@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView result;
     private Button calc;
     private double bmi;
-    private String answear;
+    private String answer;
+    private Exception error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,29 +72,41 @@ public class MainActivity extends AppCompatActivity {
         double weight = Double.parseDouble(inputWeightTxt);
         double height = Double.parseDouble(inputHeightTxt);
 
-        bmi = weight / Math.pow(height/100, 2);
-        displayBmi();
+        try{
+            bmi = weight / Math.pow(height/100, 2);
+            displayBmi();
+        }
+        catch (ArithmeticException ex){
+            error = ex;
+        }
+
+        if (height == 0){
+            result.setText("Height cannot be 0");
+        }
+
     }
 
     private void displayBmi(){
         if ( bmi < 16 )
-            answear = bmi+": wygłodzenie";
+            answer = bmi+": wygłodzenie";
         else if(bmi>=16 && bmi<17)
-            answear = bmi+": wychudzenie";
+            answer = bmi+": wychudzenie";
         else if(bmi>=17 && bmi<18.5)
-            answear = bmi+": niedowaga";
+            answer = bmi+": niedowaga";
         else if(bmi>=18.5 && bmi<24.5)
-            answear = bmi+": pożądana masa ciała";
+            answer = bmi+": pożądana masa ciała";
         else if(bmi>=24.5 && bmi<30)
-            answear = bmi+": nadwaga";
+            answer = bmi+": nadwaga";
         else if(bmi>=30 && bmi<35)
-            answear = bmi+": otyłość I stopnia";
+            answer = bmi+": otyłość I stopnia";
         else if(bmi>=35 && bmi<40)
-            answear = bmi+": otyłość II stopnia (duża)";
+            answer = bmi+": otyłość II stopnia (duża)";
         else if(bmi>=40)
-            answear = bmi+": otyłość III stopnia (chorobliwa)";
+            answer = bmi+": otyłość III stopnia (chorobliwa)";
+        else
+            answer = "Error! You can't be so fat";
 
-        result.setText("BMI: "+ answear);
+        result.setText("BMI: "+ answer);
     }
 
     @Override
