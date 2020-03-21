@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class BMI extends AppCompatActivity {
     private Button backToMain;
     private EditText weight;
@@ -53,6 +55,7 @@ public class BMI extends AppCompatActivity {
 
         try{
             bmi = weight / Math.pow(height/100, 2);
+            bmi = roundMyDouble(bmi);
             displayBmi();
         }
         catch (ArithmeticException ex){
@@ -86,5 +89,15 @@ public class BMI extends AppCompatActivity {
             answer = "Error! You can't be so fat";
 
         result.setText("BMI: \n"+ answer);
+    }
+
+    private double roundMyDouble(double val){
+        DecimalFormat df = new DecimalFormat("#.##");
+        double roundedValue = Double.valueOf(df.format(val));
+        return roundedValue;
+    }
+
+    public double getBmiValue(){
+        return bmi;
     }
 }

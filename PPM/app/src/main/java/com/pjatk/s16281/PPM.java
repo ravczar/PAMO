@@ -79,13 +79,18 @@ public class PPM extends AppCompatActivity {
             ppm = 66.5 + 13.75 * weight + 5.003 * height - 6.775 * age;
         }
 
-        DecimalFormat df = new DecimalFormat("#.##");
-        double roundedResult = Double.valueOf(df.format(ppm));
-        result.setText("PPM result: " + roundedResult + " [Calories]");
+        result.setText("PPM result: " + roundMyDouble(ppm) + " [Calories]");
 
     }
 
+    private double roundMyDouble(double val){
+        DecimalFormat df = new DecimalFormat("#.##");
+        double roundedValue = Double.valueOf(df.format(val));
+        return roundedValue;
+    }
 
-
+    public double getPpmValue(){
+        return roundMyDouble(ppm);
+    }
 
 }
