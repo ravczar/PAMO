@@ -28,14 +28,14 @@ public class BMI extends AppCompatActivity {
         weight = findViewById(R.id.weight);
         height = findViewById(R.id.height);
         result = findViewById(R.id.result);
-        calc = findViewById(R.id.calculate);
+        calc = findViewById(R.id.calculate_btn);
+
         backToMain.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 finish();
             }
         });
-
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,24 +67,24 @@ public class BMI extends AppCompatActivity {
 
     private void displayBmi(){
         if ( bmi < 16 )
-            answer = bmi+": wygłodzenie";
+            answer = bmi+"\n starvation";
         else if(bmi>=16 && bmi<17)
-            answer = bmi+": wychudzenie";
+            answer = bmi+"\n extra skinny";
         else if(bmi>=17 && bmi<18.5)
-            answer = bmi+": niedowaga";
+            answer = bmi+"\n to slim-shady";
         else if(bmi>=18.5 && bmi<24.5)
-            answer = bmi+": pożądana masa ciała";
+            answer = bmi+"\n perfect weight";
         else if(bmi>=24.5 && bmi<30)
-            answer = bmi+": nadwaga";
+            answer = bmi+"\n overweighted";
         else if(bmi>=30 && bmi<35)
-            answer = bmi+": otyłość I stopnia";
+            answer = bmi+"\n obesity I level";
         else if(bmi>=35 && bmi<40)
-            answer = bmi+": otyłość II stopnia (duża)";
+            answer = bmi+"\n obesity II level (be aware)";
         else if(bmi>=40)
-            answer = bmi+": otyłość III stopnia (chorobliwa)";
+            answer = bmi+"\n obesity III level (you are sick)";
         else
             answer = "Error! You can't be so fat";
 
-        result.setText("BMI: "+ answer);
+        result.setText("BMI: \n"+ answer);
     }
 }

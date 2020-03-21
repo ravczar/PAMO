@@ -11,7 +11,7 @@
 ### This is lab 2. Create app with:
 #### 1) Main menu
 #### 2) BMI calc
-#### 3) BWR calc
+#### 3) BWR calc (Harris-Benedict)
 #### 4) Example Recipe (what to eat based on BWR result)
 
 ### Make sure create several views and simply go back and forth for training.
