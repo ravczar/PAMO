@@ -1,9 +1,9 @@
 # Folder:"./BMI"
 
 ### This is lab 1.
-#### Create basic BMI calculator
-#### return result (number- index)
-#### make sure to tell if user is fat or not!
+#### 1) Create basic BMI calculator
+#### 2) return result (number- index)
+#### 3) make sure to tell if user is fat or not!
 
 
 # Folder:"./PPM"
