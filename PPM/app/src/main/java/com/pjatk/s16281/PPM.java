@@ -26,6 +26,7 @@ public class PPM extends AppCompatActivity {
     private Button calc;
     private TextView result;
     private double ppm;
+    private Exception error;
 
 
     @Override
@@ -47,6 +48,7 @@ public class PPM extends AppCompatActivity {
         // retrieve passed weight and height
         weightPassed = getIntent().getDoubleExtra("weight_passed",0.0);
         heightPassed = getIntent().getDoubleExtra("height_passed",0.0);
+
         // set weight and height to inputs fields to be user-visible
         weight.setText(  weightPassed == 0 ? "" : Double.toString(weightPassed) );
         height.setText(  heightPassed == 0 ? "" : Double.toString(heightPassed) );
@@ -80,18 +82,26 @@ public class PPM extends AppCompatActivity {
         String inputHeightTxt = height.getText().toString();
         String inputAgeTxt = age.getText().toString();
 
-        weightPassed = Double.parseDouble(inputWeightTxt);
-        heightPassed = Double.parseDouble(inputHeightTxt);
-        double age = Double.parseDouble(inputAgeTxt);
+        weightPassed = inputWeightTxt.isEmpty() ? 0 : Double.parseDouble(inputWeightTxt);
+        heightPassed = inputHeightTxt.isEmpty() ? 0 : Double.parseDouble(inputHeightTxt);
+        double age = inputAgeTxt.isEmpty() ? 0 : Double.parseDouble(inputAgeTxt);
 
-        if(sex){
-            ppm = 655.1 + 9.563 * weightPassed + 1.85 * heightPassed - 4.676 * age;
+        try{
+            if(weightPassed != 0 && heightPassed !=0  && age !=0){
+                if(sex){
+                    ppm = 655.1 + 9.563 * weightPassed + 1.85 * heightPassed - 4.676 * age;
+                }
+                else{
+                    ppm = 66.5 + 13.75 * weightPassed + 5.003 * heightPassed - 6.775 * age;
+                }
+                result.setText("PPM result: " + roundMyDouble(ppm) + " [Calories]");
+            }
+
         }
-        else{
-            ppm = 66.5 + 13.75 * weightPassed + 5.003 * heightPassed - 6.775 * age;
+        catch (Exception ex){
+            error = ex;
         }
 
-        result.setText("PPM result: " + roundMyDouble(ppm) + " [Calories]");
 
     }
 

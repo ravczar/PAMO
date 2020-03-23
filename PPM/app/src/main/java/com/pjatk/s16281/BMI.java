@@ -63,13 +63,15 @@ public class BMI extends AppCompatActivity {
         String inputWeightTxt = weight.getText().toString();
         String inputHeightTxt = height.getText().toString();
 
-        weight_entered = Double.parseDouble(inputWeightTxt);
-        height_entered = Double.parseDouble(inputHeightTxt);
+        weight_entered = inputWeightTxt.isEmpty() ? 0 : Double.parseDouble(inputWeightTxt);
+        height_entered = inputHeightTxt.isEmpty() ? 0 : Double.parseDouble(inputHeightTxt);
 
         try{
-            bmi = weight_entered / Math.pow(height_entered/100, 2);
+
+            bmi = height_entered > 0 ? weight_entered / Math.pow(height_entered/100, 2) : 0;
             bmi = roundMyDouble(bmi);
             displayBmi();
+
         }
         catch (ArithmeticException ex){
             error = ex;

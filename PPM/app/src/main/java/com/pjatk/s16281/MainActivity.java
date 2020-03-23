@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     bmiValue = newBmiValue;
                     heightValue = newHeightValue;
                     weightValue = newWeightValue;
-                    if (bmiValue != 0)
+                    if (bmiValue != 0 && bmiValue >0)
                         bmiView.setText(Double.toString(newBmiValue));
 
                 }
