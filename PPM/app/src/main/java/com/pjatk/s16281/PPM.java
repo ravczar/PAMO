@@ -2,6 +2,8 @@ package com.pjatk.s16281;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class PPM extends AppCompatActivity {
+    private double weightPassed;
+    private double heightPassed;
     private Button backToMain;
     private Switch gender;
     private Boolean sex;
@@ -32,7 +36,7 @@ public class PPM extends AppCompatActivity {
         // BTN initialize
         backToMain = findViewById(R.id.ppm_back);
         gender = findViewById(R.id.gender_input);
-        //Check brn state at init and save boolean
+        //Check button state at init and save boolean
         sex = gender.isChecked();
         weight = findViewById(R.id.weight_input);
         height = findViewById(R.id.height_input);
@@ -40,10 +44,18 @@ public class PPM extends AppCompatActivity {
         calc = findViewById(R.id.calculate_btn);
         result = findViewById(R.id.ppm_result);
 
+        // retrieve passed weight and height
+        weightPassed = getIntent().getDoubleExtra("weight_passed",0.0);
+        heightPassed = getIntent().getDoubleExtra("height_passed",0.0);
+        // set weight and height to inputs fields to be user-visible
+        weight.setText(  weightPassed == 0 ? "" : Double.toString(weightPassed) );
+        height.setText(  heightPassed == 0 ? "" : Double.toString(heightPassed) );
+
         backToMain.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+                //finish();
+                returnToMainActivity();
             }
         });
         calc.setOnClickListener(new View.OnClickListener() {
@@ -68,15 +80,15 @@ public class PPM extends AppCompatActivity {
         String inputHeightTxt = height.getText().toString();
         String inputAgeTxt = age.getText().toString();
 
-        double weight = Double.parseDouble(inputWeightTxt);
-        double height = Double.parseDouble(inputHeightTxt);
+        weightPassed = Double.parseDouble(inputWeightTxt);
+        heightPassed = Double.parseDouble(inputHeightTxt);
         double age = Double.parseDouble(inputAgeTxt);
 
         if(sex){
-            ppm = 655.1 + 9.563 * weight + 1.85 * height - 4.676 * age;
+            ppm = 655.1 + 9.563 * weightPassed + 1.85 * heightPassed - 4.676 * age;
         }
         else{
-            ppm = 66.5 + 13.75 * weight + 5.003 * height - 6.775 * age;
+            ppm = 66.5 + 13.75 * weightPassed + 5.003 * heightPassed - 6.775 * age;
         }
 
         result.setText("PPM result: " + roundMyDouble(ppm) + " [Calories]");
@@ -89,8 +101,22 @@ public class PPM extends AppCompatActivity {
         return roundedValue;
     }
 
-    public double getPpmValue(){
+    private double getPpmValue(){
         return roundMyDouble(ppm);
+    }
+
+    private String getSexValue() {
+        return sex ? "female" : "male";
+    }
+
+    private void returnToMainActivity(){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("weight_return", weightPassed);
+        resultIntent.putExtra("height_return", heightPassed);
+        resultIntent.putExtra("ppm_return", getPpmValue());
+        resultIntent.putExtra("sex_return", getSexValue());
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
     }
 
 }

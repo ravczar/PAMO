@@ -2,6 +2,8 @@ package com.pjatk.s16281;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +13,12 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class BMI extends AppCompatActivity {
+    private double weightPassed;
+    private double heightPassed;
     private Button backToMain;
     private EditText weight;
+    private double weight_entered;
+    private double height_entered;
     private EditText height;
     private TextView result;
     private Button calc;
@@ -32,10 +38,17 @@ public class BMI extends AppCompatActivity {
         result = findViewById(R.id.result);
         calc = findViewById(R.id.calculate_btn);
 
+        // retrieve passed weight and height
+        weightPassed = getIntent().getDoubleExtra("weight_passed",0.0);
+        heightPassed = getIntent().getDoubleExtra("height_passed",0.0);
+        // set weight and height to inputs fields to be user-visible
+        weight.setText(  weightPassed == 0 ? "" : Double.toString(weightPassed) );
+        height.setText(  heightPassed == 0 ? "" : Double.toString(heightPassed) );
+
         backToMain.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+                returnToMainActivity();
             }
         });
         calc.setOnClickListener(new View.OnClickListener() {
@@ -50,11 +63,11 @@ public class BMI extends AppCompatActivity {
         String inputWeightTxt = weight.getText().toString();
         String inputHeightTxt = height.getText().toString();
 
-        double weight = Double.parseDouble(inputWeightTxt);
-        double height = Double.parseDouble(inputHeightTxt);
+        weight_entered = Double.parseDouble(inputWeightTxt);
+        height_entered = Double.parseDouble(inputHeightTxt);
 
         try{
-            bmi = weight / Math.pow(height/100, 2);
+            bmi = weight_entered / Math.pow(height_entered/100, 2);
             bmi = roundMyDouble(bmi);
             displayBmi();
         }
@@ -62,7 +75,7 @@ public class BMI extends AppCompatActivity {
             error = ex;
         }
 
-        if (height == 0){
+        if (height_entered == 0){
             result.setText("Height cannot be 0");
         }
 
@@ -97,7 +110,24 @@ public class BMI extends AppCompatActivity {
         return roundedValue;
     }
 
-    public double getBmiValue(){
+    private double getBmiValue(){
         return bmi;
+    }
+
+    private double getHeightValue() {
+        return height_entered == 0.0 ? 0.0 : roundMyDouble(height_entered);
+    }
+
+    private double getWeightValue() {
+        return weight_entered == 0.0  ? 0.0 : roundMyDouble(weight_entered);
+    }
+
+    private void returnToMainActivity(){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("bmi_return", getBmiValue());
+        resultIntent.putExtra("height_return", getHeightValue());
+        resultIntent.putExtra("weight_return", getWeightValue());
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
     }
 }
