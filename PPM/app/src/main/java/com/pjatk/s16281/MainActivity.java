@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         recipeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openActivityRecipes();
+                openActivityRecipe();
             }
         });
     }
@@ -76,8 +76,12 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 2);
     }
 
-    public void openActivityRecipes(){
-        Intent intent = new Intent(this, Recipe.class);
+    public void openActivityRecipe(){
+        // Intent intent = new Intent(this, RecipeItem.class);
+        // startActivity(intent);
+        Intent intent = new Intent(getBaseContext(), Recipe.class);
+        intent.putExtra("bmi_passed", bmiValue);
+        intent.putExtra("ppm_passed", ppmValue);
         startActivity(intent);
     }
 
@@ -99,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     bmiValue = newBmiValue;
                     heightValue = newHeightValue;
                     weightValue = newWeightValue;
-                    bmiView.setText(Double.toString(newBmiValue));
+                    if (bmiValue != 0)
+                        bmiView.setText(Double.toString(newBmiValue));
 
                 }
                 break;
@@ -115,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     sexValue = newSexValue;
                     ppmValue = newPpmValue;
                     ppmView.setText(Double.toString(newPpmValue));
-                    bmiValue =  weightValue / Math.pow(heightValue/100, 2);
+                    bmiValue =  roundMyDouble(weightValue / Math.pow(heightValue/100, 2) );
                     sexView.setText(newSexValue );
                     // reset bmi
                     bmiView.setText(Double.toString(roundMyDouble(bmiValue)));
