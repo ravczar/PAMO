@@ -40,7 +40,8 @@ public class RecipeDatabase {
                         0.2,
                         0.005,
                         0.005,
-                        0.002
+                        0.002,
+                        "https://ocdn.eu/pulscms-transforms/1/FiKktkpTURBXy8zNjZmOWI0MTk4ZTI1NmUwMmUyYzEzNDNmZWNmNWE2OC5qcGeTlQMAzLvNF3DNDS-TBc0DFM0BvJUH2TIvcHVsc2Ntcy9NREFfLzE0MGIxY2ZlN2YwYWM1MmVkYzAxMGQ3MDk3OGU4NGJlLnBuZwDCAA"
                 )
         );
         recipeItems.add(
@@ -59,7 +60,8 @@ public class RecipeDatabase {
                         0.2,
                         0.3,
                         0.005,
-                        0.002
+                        (0.002),
+                        "https://barefeetinthekitchen.com/wp-content/uploads/2014/01/Thai-Steak-and-Green-Beans-4-1-of-1.jpg"
                 )
         );
         recipeItems.add(
@@ -78,7 +80,8 @@ public class RecipeDatabase {
                         0.1,
                         0.01,
                         0.1,
-                        0.01
+                        0.01,
+                        "https://d-art.ppstatic.pl/kadry/k/r/1/67/c6/5ae18d345d928_o_medium.jpg"
                 )
         );
         recipeItems.add(
@@ -97,7 +100,8 @@ public class RecipeDatabase {
                         0.1,
                         0.01,
                         0.1,
-                        0.01
+                        0.01,
+                        "https://pizzaportal.pl/i/wp-content/uploads/2019/04/turecka_kebab_doner.jpg"
                 )
         );
         recipeItems.add(
@@ -117,6 +121,7 @@ public class RecipeDatabase {
                         0.2,
                         0.01,
                         0.01
+                        ,"https://links.imagerelay.com/cdn/34/ql/3a4a160d377b48629f23ab9a75bd2779/Cabot-FitTeam_Power-Salad-horizontal-034_950x633_72_RGB._jpg_"
                 )
         );
         recipeItems.add(
@@ -135,7 +140,8 @@ public class RecipeDatabase {
                         0.15,
                         0.2,
                         0.01,
-                        0.01
+                        0.01,
+                        "https://i2.wp.com/theculinarycook.com/wp-content/uploads/2019/05/types-of-salad-cobb.jpg?fit=900%2C600&amp;ssl=1"
                 )
         );
 
@@ -155,7 +161,8 @@ public class RecipeDatabase {
                         0.1,
                         0.2,
                         0.01,
-                        0.01
+                        0.01,
+                        "https://thechalkboardmag.com/wp-content/uploads/2019/08/dinner-salad-1.jpg"
                 )
         );
     }

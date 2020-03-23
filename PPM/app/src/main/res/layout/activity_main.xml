@@ -119,4 +119,10 @@
         app:layout_constraintStart_toEndOf="@+id/sex_text"
         app:layout_constraintTop_toBottomOf="@+id/ppm_view" />
 
+    <SearchView
+        android:layout_width="409dp"
+        android:layout_height="260dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="470dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

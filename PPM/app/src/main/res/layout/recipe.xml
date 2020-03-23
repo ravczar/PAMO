@@ -21,11 +21,11 @@
         android:id="@+id/recipe_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="28dp"
         android:text="BACK TO MAIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:text="Ingredient:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_calories" />
@@ -176,22 +176,20 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:text="Calories:"
-        app:layout_constraintBottom_toTopOf="@+id/view_ingr1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_description"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/view_description" />
 
     <TextView
         android:id="@+id/view_amnt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="Amount:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/view_ingr1"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_button" />
+        app:layout_constraintTop_toBottomOf="@+id/view_calories" />
 
     <TextView
         android:id="@+id/view_amnt2"
@@ -254,5 +252,19 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/view_ingr3"
         app:layout_constraintTop_toBottomOf="@+id/view_amnt2" />
+
+    <ImageView
+        android:id="@+id/recipe_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_ingr6"
+        app:layout_constraintVertical_bias="1.0"
+        tools:srcCompat="@tools:sample/avatars"  />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

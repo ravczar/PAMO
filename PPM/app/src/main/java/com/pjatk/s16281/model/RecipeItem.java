@@ -19,6 +19,8 @@ public class RecipeItem {
     private double amount_5;
     private double amount_6;
 
+    private String photoLink;
+
     public RecipeItem(String name, String desc, double calories){
         this.title = title;
         this.description = desc;
@@ -26,7 +28,8 @@ public class RecipeItem {
     }
     public RecipeItem(String title, String desc, double calories,
                       String ingr1, String ingr2, String ingr3, String ingr4, String ingr5, String ingr6,
-                      double am1, double am2, double am3, double am4, double am5, double am6
+                      double am1, double am2, double am3, double am4, double am5, double am6,
+                      String photoLink
     ){
         this.title = title;
         this.description = desc;
@@ -43,6 +46,7 @@ public class RecipeItem {
         this.amount_4 = am4;
         this.amount_5 = am5;
         this.amount_6 = am6;
+        this.photoLink = photoLink;
     }
 
     public String getTitle(){
@@ -70,7 +74,7 @@ public class RecipeItem {
         return ingredient_5;
     }
     public String getIngredient_6(){
-        return ingredient_1;
+        return ingredient_6;
     }
     public double getAmount_1(){
         return amount_1;
@@ -90,6 +94,7 @@ public class RecipeItem {
     public double getAmount_6(){
         return amount_6;
     }
+    public String getPhoto() { return photoLink; }
 
 
 }
