@@ -2,23 +2,14 @@ package com.pjatk.s16281;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.pjatk.s16281.model.RecipeDatabase;
 import com.pjatk.s16281.model.RecipeItem;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 
 public class Recipe extends AppCompatActivity {
@@ -73,7 +64,7 @@ public class Recipe extends AppCompatActivity {
         amount4 = findViewById(R.id.view_amnt4);
         amount5 = findViewById(R.id.view_amnt5);
         amount6 = findViewById(R.id.view_amnt6);
-        recipeImage = findViewById(R.id.recipe_image);
+        //recipeImage = findViewById(R.id.recipe_image);
 
 
         // init recipe db and boolean flag
@@ -163,7 +154,7 @@ public class Recipe extends AppCompatActivity {
         amount4.setVisibility(View.INVISIBLE);
         amount5.setVisibility(View.INVISIBLE);
         amount6.setVisibility(View.INVISIBLE);
-        recipeImage.setVisibility(View.INVISIBLE);
+        //recipeImage.setVisibility(View.INVISIBLE);
     }
 
     private void displayAllRecipeItems(){
@@ -182,7 +173,7 @@ public class Recipe extends AppCompatActivity {
         amount4.setVisibility(View.VISIBLE);
         amount5.setVisibility(View.VISIBLE);
         amount6.setVisibility(View.VISIBLE);
-        recipeImage.setVisibility(View.VISIBLE);
+        //recipeImage.setVisibility(View.VISIBLE);
     }
 
 }
