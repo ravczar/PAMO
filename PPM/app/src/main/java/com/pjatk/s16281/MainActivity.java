@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private double ppmValue;
     private double heightValue;
     private double weightValue;
+    private double ageValue;
     private String sexValue;
 
     private Button bmiButton;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), PPM.class);
         intent.putExtra("height_passed", heightValue);
         intent.putExtra("weight_passed", weightValue);
+        intent.putExtra("age_passed", ageValue);
         startActivityForResult(intent, 2);
     }
 
@@ -114,10 +116,12 @@ public class MainActivity extends AppCompatActivity {
                     double newHeightValue = data.getDoubleExtra("height_return", 0.0);
                     double newWeightValue = data.getDoubleExtra("weight_return", 0.0);
                     double newPpmValue = data.getDoubleExtra("ppm_return", 0.0);
+                    double newAgeValue = data.getDoubleExtra("age_return", 0.0);
                     String newSexValue = data.getStringExtra("sex_return");
                     heightValue = newHeightValue;
                     weightValue = newWeightValue;
                     sexValue = newSexValue;
+                    ageValue = newAgeValue;
                     if( newPpmValue > 0) {
                         ppmValue = newPpmValue;
                         ppmView.setText(Double.toString(newPpmValue));
