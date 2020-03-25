@@ -145,9 +145,9 @@
         android:id="@+id/score_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="20dp"
-        android:text="Last Score:"
+        android:text="SCORE:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sex_text" />
 

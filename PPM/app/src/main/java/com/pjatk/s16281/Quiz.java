@@ -4,14 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
+
+import com.pjatk.s16281.model.QuestionDatabase;
 
 public class Quiz extends AppCompatActivity {
     private Button backToMain;
+    private ImageView questionImage;
     private int score;
+    private QuestionDatabase questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +26,22 @@ public class Quiz extends AppCompatActivity {
 
         // BTN initialize
         backToMain = findViewById(R.id.quiz_back);
+        questionImage = findViewById(R.id.quiz_image);
 
-        //back to main activity listener
+        // questions
+        try{
+            questions = new QuestionDatabase();
+        }
+        catch(Exception ex){
+            Log.e("Error", ex.getMessage());
+        }
+
+
+        // set images
+        Drawable newPicture = getResources().getDrawable( R.drawable.ic_launcher_foreground );
+        questionImage.setImageDrawable(newPicture);
+
+        //Back to main activity listener
         backToMain.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
