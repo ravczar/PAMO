@@ -1,6 +1,7 @@
 package com.pjatk.s16281.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RecipeDatabase {
     private ArrayList<RecipeItem> recipeItems = new ArrayList<>();
@@ -13,13 +14,44 @@ public class RecipeDatabase {
         return recipeItems;
     }
 
-    public RecipeItem getSuitableRecipeByCalories(double calories ) {
+    public RecipeItem getSuitableRecipeByCalories( double calories ) {
+        ArrayList<RecipeItem> proposed = new ArrayList<>();
         for (RecipeItem recipeItem : recipeItems){
-            if (recipeItem.getCalories() <= calories && (recipeItem.getCalories() - calories) <= 300 ) {
-                return recipeItem;
+            if (Math.abs(recipeItem.getCalories() - calories) <= 200 ) {
+                proposed.add(recipeItem);
             }
         }
-        return new RecipeItem("No suitable recipe found", "Please see more in the internet", 0.0);
+
+        return proposed.size() > 0 ? getRandomRecipeFromSelectedRecipes(proposed) : recipeNotFoundItem();
+
+
+
+    }
+
+    private RecipeItem getRandomRecipeFromSelectedRecipes( ArrayList<RecipeItem> selectedItems){
+        int index = new Random().nextInt(selectedItems.size());
+        return selectedItems.get( index);
+    }
+
+    private RecipeItem recipeNotFoundItem(){
+        return new RecipeItem(
+                "Recipe not found",
+                "We don't have suitable recipe in our system.",
+                0.0,
+                "unknown",
+                "unknown",
+                "unknown",
+                "unknown",
+                "unknown",
+                "unknown",
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                "https://ocdn.eu/pulscms-transforms/1/FiKktkpTURBXy8zNjZmOWI0MTk4ZTI1NmUwMmUyYzEzNDNmZWNmNWE2OC5qcGeTlQMAzLvNF3DNDS-TBc0DFM0BvJUH2TIvcHVsc2Ntcy9NREFfLzE0MGIxY2ZlN2YwYWM1MmVkYzAxMGQ3MDk3OGU4NGJlLnBuZwDCAA"
+        );
     }
 
     private void addSeveralRecipesToDatabase(){
@@ -82,6 +114,26 @@ public class RecipeDatabase {
                         0.1,
                         0.01,
                         "https://d-art.ppstatic.pl/kadry/k/r/1/67/c6/5ae18d345d928_o_medium.jpg"
+                )
+        );
+        recipeItems.add(
+                new RecipeItem(
+                        "Kebab tuna superb",
+                        "Buy prepared kebab meat and other separate products",
+                        3000,
+                        "salmon",
+                        "shrimps",
+                        "onion",
+                        "ketchup",
+                        "sweet pepper",
+                        "seamen sauce",
+                        0.2,
+                        0.3,
+                        0.1,
+                        0.01,
+                        0.1,
+                        0.01,
+                        "https://lh3.googleusercontent.com/proxy/m4OiHIU1baEVorFoNFvxoyLOPdK0ZpuyI6Nkdu6Wpwa_npqXSTqiyQRIgbnXBcRqLN69ZtKtA5z5kXKHjK2Ba7EvIM819SiXTJeu523TwMjp6NDeOoObARLdp5Q3VrrT7ZCeul4"
                 )
         );
         recipeItems.add(

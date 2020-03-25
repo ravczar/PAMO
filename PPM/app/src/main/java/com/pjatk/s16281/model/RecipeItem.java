@@ -21,6 +21,10 @@ public class RecipeItem {
 
     private String photoLink;
 
+    public RecipeItem(){
+
+    }
+
     public RecipeItem(String name, String desc, double calories){
         this.title = title;
         this.description = desc;

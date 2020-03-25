@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,7 +63,6 @@ public class BMI extends AppCompatActivity {
     public void calculateBmi(){
         String inputWeightTxt = weight.getText().toString();
         String inputHeightTxt = height.getText().toString();
-
         weight_entered = inputWeightTxt.isEmpty() ? 0 : Double.parseDouble(inputWeightTxt);
         height_entered = inputHeightTxt.isEmpty() ? 0 : Double.parseDouble(inputHeightTxt);
 
@@ -74,7 +74,9 @@ public class BMI extends AppCompatActivity {
 
         }
         catch (ArithmeticException ex){
-            error = ex;
+            ///TODO
+            // Check it our
+            Log.e("BMI counting error:", ex.getMessage());
         }
 
         if (height_entered == 0){

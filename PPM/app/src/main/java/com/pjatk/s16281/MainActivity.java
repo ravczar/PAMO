@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
                     bmiValue = newBmiValue;
                     heightValue = newHeightValue;
                     weightValue = newWeightValue;
-                    if (bmiValue != 0 && bmiValue >0)
+                    if (bmiValue != 0 && bmiValue > 0) {
                         bmiView.setText(Double.toString(newBmiValue));
-
+                    }
                 }
                 break;
             }
@@ -118,12 +118,15 @@ public class MainActivity extends AppCompatActivity {
                     heightValue = newHeightValue;
                     weightValue = newWeightValue;
                     sexValue = newSexValue;
-                    ppmValue = newPpmValue;
-                    ppmView.setText(Double.toString(newPpmValue));
-                    bmiValue =  roundMyDouble(weightValue / Math.pow(heightValue/100, 2) );
+                    if( newPpmValue > 0) {
+                        ppmValue = newPpmValue;
+                        ppmView.setText(Double.toString(newPpmValue));
+                    }
+                    if (heightValue != 0 && heightValue > 0){
+                        bmiValue =  roundMyDouble(weightValue / Math.pow(heightValue/100, 2) );
+                        bmiView.setText(Double.toString(roundMyDouble(bmiValue)));
+                    }
                     sexView.setText(newSexValue );
-                    // reset bmi
-                    bmiView.setText(Double.toString(roundMyDouble(bmiValue)));
 
                 }
                 break;
