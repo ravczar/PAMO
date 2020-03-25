@@ -12,19 +12,11 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    private double bmiValue;
-    private double ppmValue;
-    private double heightValue;
-    private double weightValue;
-    private double ageValue;
+    private double bmiValue, ppmValue, heightValue, weightValue, ageValue ;
+    private int scoreValue;
     private String sexValue;
-
-    private Button bmiButton;
-    private Button ppmButton;
-    private Button recipeButton;
-    private TextView bmiView;
-    private TextView ppmView;
-    private TextView sexView;
+    private Button bmiButton,ppmButton, recipeButton, quizButton, chartButton;
+    private TextView bmiView, ppmView, sexView, quizView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
         bmiButton = findViewById(R.id.button_bmi);
         ppmButton = findViewById(R.id.button_ppm);
         recipeButton = findViewById(R.id.button_recipe);
+        quizButton = findViewById(R.id.button_quiz);
+        chartButton = findViewById(R.id.button_chart);
         bmiView = findViewById(R.id.bmi_view);
         ppmView = findViewById(R.id.ppm_view);
         sexView = findViewById(R.id.sex_view);
+        quizView = findViewById(R.id.quiz_view);
 
         bmiButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -55,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 openActivityRecipe();
+            }
+        });
+        quizButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openActivityQuiz();
+            }
+        });
+        chartButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openActivityChart();
             }
         });
     }
@@ -87,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openActivityQuiz(){
+        Intent intent = new Intent(getBaseContext(), Quiz.class);
+        startActivityForResult(intent, 3);
+    }
+
+    public void openActivityChart(){
+        Intent intent = new Intent(this, Chart.class);
+        startActivity(intent);
+    }
+
     private double roundMyDouble(double val){
         DecimalFormat df = new DecimalFormat("#.##");
         double roundedValue = Double.valueOf(df.format(val));
@@ -113,18 +130,15 @@ public class MainActivity extends AppCompatActivity {
             }
             case (2) : {
                 if (resultCode == Activity.RESULT_OK) {
-                    double newHeightValue = data.getDoubleExtra("height_return", 0.0);
-                    double newWeightValue = data.getDoubleExtra("weight_return", 0.0);
-                    double newPpmValue = data.getDoubleExtra("ppm_return", 0.0);
-                    double newAgeValue = data.getDoubleExtra("age_return", 0.0);
+                    heightValue = data.getDoubleExtra("height_return", 0.0);
+                    weightValue = data.getDoubleExtra("weight_return", 0.0);
+                    ageValue = data.getDoubleExtra("age_return", 0.0);
+                    ppmValue = data.getDoubleExtra("ppm_return", 0.0);
                     String newSexValue = data.getStringExtra("sex_return");
-                    heightValue = newHeightValue;
-                    weightValue = newWeightValue;
                     sexValue = newSexValue;
-                    ageValue = newAgeValue;
-                    if( newPpmValue > 0) {
-                        ppmValue = newPpmValue;
-                        ppmView.setText(Double.toString(newPpmValue));
+
+                    if( ppmValue > 0) {
+                        ppmView.setText(Double.toString(ppmValue));
                     }
                     if (heightValue != 0 && heightValue > 0){
                         bmiValue =  roundMyDouble(weightValue / Math.pow(heightValue/100, 2) );
@@ -132,6 +146,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                     sexView.setText(newSexValue );
 
+                }
+                break;
+            }
+            case (3) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    scoreValue = data.getIntExtra("score_return", 0);
+                    if (scoreValue != 0 && scoreValue > 0) {
+                        quizView.setText(Integer.toString(scoreValue));
+                    }
                 }
                 break;
             }
