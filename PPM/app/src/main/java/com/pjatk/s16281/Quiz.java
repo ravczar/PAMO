@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.pjatk.s16281.model.QuestionDatabase;
 import com.pjatk.s16281.model.QuestionItem;
 
-import java.util.Collections;
+import java.text.MessageFormat;
 
 public class Quiz extends AppCompatActivity {
     private Button backToMainButton, nextQuestionButton, answer1Btn, answer2Btn, answer3Btn, answer4Btn;
@@ -143,8 +143,7 @@ public class Quiz extends AppCompatActivity {
 
     private void returnToMainActivity(){
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("score_return", getScoreValue());
-        resultIntent.putExtra("question_count_return", questionsTotalCount);
+        resultIntent.putExtra("percent_return", countPercentResult());
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
     }
@@ -187,6 +186,7 @@ public class Quiz extends AppCompatActivity {
             questionId = 1;
             step = 1;
             hideAllQuizRelatedItems();
+            makeEndGameToast();
         }
 
     }
@@ -223,6 +223,20 @@ public class Quiz extends AppCompatActivity {
         myToast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 650);
         View view = myToast.getView();
         view.setBackgroundColor(toastBg);
+        myToast.show();
+    }
+
+    private double countPercentResult() {
+        double percent  = (double)score/(double)questionsTotalCount*100;
+        return percent;
+    }
+
+    private void makeEndGameToast(){
+        String text = MessageFormat.format("You have finished the quiz with result of : {0}%", countPercentResult());
+        Toast myToast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+        myToast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 650);
+        View view = myToast.getView();
+        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         myToast.show();
     }
 
