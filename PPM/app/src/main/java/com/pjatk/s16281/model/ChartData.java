@@ -74,7 +74,7 @@ public class ChartData {
                 "      var options = {\n" +
                 "        legend: 'none',\n" +
                 "        pieSliceText: 'label',\n" +
-                "        title: 'Total cases in selected European Countries (1 [unit] is 1 [person])',\n" +
+                "        title: 'Total cases in selected European Countries (1 [unit] is 1 [person]) Data: 26.03.2020 16:40 ',\n" +
                 "        pieStartAngle: 100,\n" +
                 "      };\n" +
                 "\n" +
