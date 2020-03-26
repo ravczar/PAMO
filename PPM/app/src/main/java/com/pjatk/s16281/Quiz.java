@@ -18,9 +18,9 @@ import com.pjatk.s16281.model.QuestionItem;
 
 public class Quiz extends AppCompatActivity {
     private Button backToMainButton, nextQuestionButton, answer1Btn, answer2Btn, answer3Btn, answer4Btn;
-    private TextView questionView;
+    private TextView questionView, quizTitleView;
     private ImageView questionImage;
-    private int score, questionId;
+    private int score, questionId, step;
     private QuestionDatabase questions;
     private QuestionItem selectedQuestion;
 
@@ -36,12 +36,14 @@ public class Quiz extends AppCompatActivity {
         answer3Btn = findViewById(R.id.btn_answer_3);
         answer4Btn = findViewById(R.id.btn_answer_4);
         questionView = findViewById(R.id.qestion_view);
+        quizTitleView = findViewById(R.id.quiz_title);
         nextQuestionButton = findViewById(R.id.button_next);
         questionImage = findViewById(R.id.quiz_image);
 
         // questions, questionId, score
         questionId = 1;
         score = 0;
+        step = 1;
         try{
             questions = new QuestionDatabase();
         }
@@ -63,7 +65,12 @@ public class Quiz extends AppCompatActivity {
         nextQuestionButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                nextQuestion();
+                try{
+                    nextQuestion();
+                }
+                catch (CloneNotSupportedException e){
+                    Log.e("Next question fail", e.getMessage());
+                }
             }
         });
         answer1Btn.setOnClickListener(new View.OnClickListener(){
@@ -94,7 +101,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     private int getScoreValue(){
-        score = 75;
+        //score = 75;
         return score;
     }
 
@@ -105,17 +112,24 @@ public class Quiz extends AppCompatActivity {
         finish();
     }
 
-    private void nextQuestion(){
+    private void nextQuestion() throws CloneNotSupportedException {
         int size = questions.getDatabaseSize();
 
         // Question from db by questionId(initial(1))
-        selectedQuestion = questions.getQuestionById(questionId);
+        try{
+            selectedQuestion = questions.getQuestionCloneById(questionId);
+        }
+        catch (CloneNotSupportedException e){
+            Log.e("Cloning question failed", e.getMessage());
+        }
+
 
         // Draw image
         Drawable newPicture = getResources().getDrawable(selectedQuestion.getPhoto());
         questionImage.setImageDrawable(newPicture);
 
         //Set question and answers
+        quizTitleView.setText("Quiz step:" + step);
         questionView.setText(selectedQuestion.getQuestion());
         answer1Btn.setText(selectedQuestion.getCorrectAnswer());
         answer2Btn.setText(selectedQuestion.getWrongAnswer(1));
@@ -125,10 +139,15 @@ public class Quiz extends AppCompatActivity {
 
 
         // Sprawdź czy nie wychodzimy ponad liczbę pytań i wróć do początku
-        if(questionId < size )
+        if(questionId < size ){
             questionId ++;
-        else
+            step ++;
+        }
+        else{
             questionId = 1;
+            step = 1;
+        }
+
 
     }
 
@@ -137,6 +156,7 @@ public class Quiz extends AppCompatActivity {
         String answer = selectedBtn.getText().toString();
 
         if(selectedQuestion.getCorrectAnswer() == answer){
+            score ++;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
             Toast myToast = Toast.makeText(this, "sukces", Toast.LENGTH_SHORT);
             myToast.show();

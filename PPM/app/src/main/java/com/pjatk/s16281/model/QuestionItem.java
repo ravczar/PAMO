@@ -1,10 +1,8 @@
 package com.pjatk.s16281.model;
 
-import android.graphics.drawable.Drawable;
-
 import java.util.ArrayList;
 
-public class QuestionItem {
+public class QuestionItem implements Cloneable{
     private String question;
     private int quizPicture;
     private ArrayList <String> answers;
@@ -44,6 +42,20 @@ public class QuestionItem {
             }
         }
         return -1;
+    }
+
+    @Override
+    protected QuestionItem clone() throws CloneNotSupportedException {
+        QuestionItem clone = null;
+        try
+        {
+            clone = (QuestionItem) super.clone();
+        }
+        catch (CloneNotSupportedException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return clone;
     }
 
 

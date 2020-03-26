@@ -6,12 +6,15 @@ import java.util.ArrayList;
 public class QuestionDatabase {
     private ArrayList<QuestionItem> questions;
 
-    public QuestionDatabase(){
+    public QuestionDatabase (){
         this.questions = new ArrayList<>();
         addQuestionToDatabase();
     }
 
     public QuestionItem getQuestionById(int id){ return questions.get(id-1); }
+    public QuestionItem getQuestionCloneById(int id) throws CloneNotSupportedException {
+        return questions.get(id-1).clone();
+    }
 
     public int getDatabaseSize(){
         return questions.size();
