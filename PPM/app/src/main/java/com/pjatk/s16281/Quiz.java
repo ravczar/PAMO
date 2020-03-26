@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -85,6 +86,11 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer1Btn);
+                try{
+                    nextQuestion();
+                } catch (Exception e){
+                    Log.e("Fail on next step", e.getMessage());
+                }
             }
         });
         answer2Btn.setOnClickListener(new View.OnClickListener(){
@@ -92,6 +98,12 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer2Btn);
+                try{
+                    nextQuestion();
+                } catch (Exception e){
+                    Log.e("Fail after assess score", e.getMessage());
+                }
+
             }
         });
         answer3Btn.setOnClickListener(new View.OnClickListener(){
@@ -99,6 +111,11 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer3Btn);
+                try{
+                    nextQuestion();
+                } catch (Exception e){
+                    Log.e("Fail after assess score", e.getMessage());
+                }
             }
         });
         answer4Btn.setOnClickListener(new View.OnClickListener(){
@@ -106,6 +123,11 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer4Btn);
+                try{
+                    nextQuestion();
+                } catch (Exception e){
+                    Log.e("Fail after assess score", e.getMessage());
+                }
             }
         });
 
@@ -134,7 +156,6 @@ public class Quiz extends AppCompatActivity {
             Log.e("Cloning question failed", e.getMessage());
         }
 
-
         // Draw image
         Drawable newPicture = getResources().getDrawable(selectedQuestion.getPhoto());
         questionImage.setImageDrawable(newPicture);
@@ -148,7 +169,7 @@ public class Quiz extends AppCompatActivity {
         answer3Btn.setText(selectedQuestion.getAnswerById(2));
         answer4Btn.setText(selectedQuestion.getAnswerById(3));
 
-        // Sprawdź czy nie wychodzimy ponad liczbę pytań i wróć do początku
+        // Check if we do not exceed number of available questions
         if(questionId < size ){
             score = answeredCorrect ? ++score : score;
             scoreView.setText("Score: " + score);
@@ -169,21 +190,30 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void CheckSelectedAnswer(Button selectedBtn){
-        // Pobierz nazwę klikniętego przycisku
+        // Get text displayed in answer button that was clicked
         String answer = selectedBtn.getText().toString();
 
         if(selectedQuestion.getCorrectAnswer() == answer){
             answeredCorrect = true;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
-            Toast myToast = Toast.makeText(this, "Success", Toast.LENGTH_SHORT);
-            myToast.show();
+            makeAnswerAssesmentToast(answeredCorrect);
         }
         else{
             answeredCorrect = false;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorFailure));
-            Toast myToast = Toast.makeText(this, "Failure", Toast.LENGTH_SHORT);
-            myToast.show();
+            makeAnswerAssesmentToast(answeredCorrect);
         }
+    }
+
+    private void makeAnswerAssesmentToast(Boolean answerStatus){
+        String text = answerStatus ? "Success :)" : "Failure :(";
+        int toastBg = answerStatus ? getResources().getColor(R.color.colorSuccess) : getResources().getColor(R.color.colorFailure);
+
+        Toast myToast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        myToast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 650);
+        View view = myToast.getView();
+        view.setBackgroundColor(toastBg);
+        myToast.show();
     }
 
 }

@@ -24,10 +24,10 @@ public class QuestionDatabase {
         questions.add(new QuestionItem(
                 "Dlaczego w nazwie wirusa występuje słowo 'korona'? ",
                 R.drawable.korona4,
-                "cząsteczki wirusa otoczone są strukturą w formie korony",
-                "wyodrębniono go z rośliny 'wilczomlecza', czyli korony cierniowej",
+                "wirus ma cząsteczki podobne do korony",
+                "zarażenie nim powoduje wstąpnie na tron Anglii",
                 "pierwszym zakażonym na świecie był król Chin",
-                "wirus powoduje efekt koronwania w zdrowych komórkach"
+                "wirus kolokwialnie koronuje zdrowe komórki"
         ));
         questions.add(new QuestionItem(
                 "Jak brzmi pełna nazwa koronawirusa? ",
