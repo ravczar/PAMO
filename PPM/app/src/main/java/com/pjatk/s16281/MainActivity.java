@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openActivityBMI(){
         //Intent intent = new Intent(this, BMI.class);
-        //startActivityForResult(intent, 1);
+        //startActivity(intent);
         Intent intent = new Intent(getBaseContext(), BMI.class);
         intent.putExtra("height_passed", heightValue);
         intent.putExtra("weight_passed", weightValue);
@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openActivityPPM(){
-        // Intent intent = new Intent(this, PPM.class);
-        // startActivityForResult(intent, 2);
         Intent intent = new Intent(getBaseContext(), PPM.class);
         intent.putExtra("height_passed", heightValue);
         intent.putExtra("weight_passed", weightValue);
@@ -86,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openActivityRecipe(){
-        // Intent intent = new Intent(this, RecipeItem.class);
-        // startActivity(intent);
         Intent intent = new Intent(getBaseContext(), Recipe.class);
         intent.putExtra("bmi_passed", bmiValue);
         intent.putExtra("ppm_passed", ppmValue);
@@ -116,14 +112,11 @@ public class MainActivity extends AppCompatActivity {
         switch(requestCode) {
             case (1) : {
                 if (resultCode == Activity.RESULT_OK) {
-                    double newBmiValue = data.getDoubleExtra("bmi_return", 0.0);
-                    double newHeightValue = data.getDoubleExtra("height_return", 0.0);
-                    double newWeightValue = data.getDoubleExtra("weight_return", 0.0);
-                    bmiValue = newBmiValue;
-                    heightValue = newHeightValue;
-                    weightValue = newWeightValue;
+                    bmiValue = data.getDoubleExtra("bmi_return", 0.0);
+                    heightValue = data.getDoubleExtra("height_return", 0.0);
+                    weightValue = data.getDoubleExtra("weight_return", 0.0);
                     if (bmiValue != 0 && bmiValue > 0) {
-                        bmiView.setText(Double.toString(newBmiValue));
+                        bmiView.setText(Double.toString(bmiValue));
                     }
                 }
                 break;
@@ -134,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     weightValue = data.getDoubleExtra("weight_return", 0.0);
                     ageValue = data.getDoubleExtra("age_return", 0.0);
                     ppmValue = data.getDoubleExtra("ppm_return", 0.0);
-                    String newSexValue = data.getStringExtra("sex_return");
-                    sexValue = newSexValue;
+                    sexValue = data.getStringExtra("sex_return");
 
                     if( ppmValue > 0) {
                         ppmView.setText(Double.toString(ppmValue));
@@ -144,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         bmiValue =  roundMyDouble(weightValue / Math.pow(heightValue/100, 2) );
                         bmiView.setText(Double.toString(roundMyDouble(bmiValue)));
                     }
-                    sexView.setText(newSexValue );
+                    sexView.setText(sexValue );
 
                 }
                 break;
