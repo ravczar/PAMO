@@ -1,10 +1,14 @@
 package com.pjatk.s16281.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.function.Predicate;
 
 public class QuestionItem implements Cloneable{
     private String question;
     private int quizPicture;
+    private String correctAnswer;
+    private int correctAnswerId;
     private ArrayList <String> answers;
 
     public QuestionItem(
@@ -18,6 +22,8 @@ public class QuestionItem implements Cloneable{
         this.answers = new ArrayList<>();
         this.question = question;
         this.quizPicture = picture;
+        this.correctAnswer = correctAn;
+        this.correctAnswerId = 0;
         this.answers.add(correctAn);
         this.answers.add(wrongAn1);
         this.answers.add(wrongAn2);
@@ -28,10 +34,14 @@ public class QuestionItem implements Cloneable{
         return question;
     }
     public String getCorrectAnswer() {
-        return answers.get(0);
+        return answers.get(correctAnswerId);
     }
     public int getPhoto() { return quizPicture; }
-    public String getWrongAnswer(int id){ return this.answers.get(id); }
+    public String getAnswerById(int id){ return this.answers.get(id); }
+    public void ShuffleMyAnswersForDisplay() {
+        Collections.shuffle(answers);
+        correctAnswerId = answers.indexOf(correctAnswer);
+    }
 
 
     public int getIdOfQuestionSting(String answerChecked){

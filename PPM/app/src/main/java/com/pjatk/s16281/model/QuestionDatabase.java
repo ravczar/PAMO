@@ -42,8 +42,8 @@ public class QuestionDatabase {
                 R.drawable.korona5,
                 "zapalenie płuc",
                 "długotrwały wzwód",
-                "niechęć do nauki",
-                "popracie dla LGBT"
+                "niechęć do Javy",
+                "konwersję na LGBT"
         ));
         questions.add(new QuestionItem(
                 "Jaką chronić się przed wirusem? ",

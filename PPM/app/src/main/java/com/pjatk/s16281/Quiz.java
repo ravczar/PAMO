@@ -16,13 +16,17 @@ import android.widget.Toast;
 import com.pjatk.s16281.model.QuestionDatabase;
 import com.pjatk.s16281.model.QuestionItem;
 
+import java.util.Collections;
+
 public class Quiz extends AppCompatActivity {
     private Button backToMainButton, nextQuestionButton, answer1Btn, answer2Btn, answer3Btn, answer4Btn;
-    private TextView questionView, quizTitleView;
+    private Button[] answerButtons;
+    private TextView questionView, quizTitleView, scoreView;
     private ImageView questionImage;
     private int score, questionId, step;
     private QuestionDatabase questions;
     private QuestionItem selectedQuestion;
+    private Boolean answeredCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,10 @@ public class Quiz extends AppCompatActivity {
         answer2Btn = findViewById(R.id.btn_answer_2);
         answer3Btn = findViewById(R.id.btn_answer_3);
         answer4Btn = findViewById(R.id.btn_answer_4);
+        answerButtons = new Button[] {answer1Btn, answer2Btn, answer3Btn, answer4Btn};
         questionView = findViewById(R.id.qestion_view);
         quizTitleView = findViewById(R.id.quiz_title);
+        scoreView = findViewById(R.id.score_view);
         nextQuestionButton = findViewById(R.id.button_next);
         questionImage = findViewById(R.id.quiz_image);
 
@@ -44,6 +50,7 @@ public class Quiz extends AppCompatActivity {
         questionId = 1;
         score = 0;
         step = 1;
+        answeredCorrect = false;
         try{
             questions = new QuestionDatabase();
         }
@@ -76,24 +83,28 @@ public class Quiz extends AppCompatActivity {
         answer1Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer1Btn);
             }
         });
         answer2Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer2Btn);
             }
         });
         answer3Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer3Btn);
             }
         });
         answer4Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer4Btn);
             }
         });
@@ -101,7 +112,6 @@ public class Quiz extends AppCompatActivity {
     }
 
     private int getScoreValue(){
-        //score = 75;
         return score;
     }
 
@@ -115,9 +125,10 @@ public class Quiz extends AppCompatActivity {
     private void nextQuestion() throws CloneNotSupportedException {
         int size = questions.getDatabaseSize();
 
-        // Question from db by questionId(initial(1))
+        // Question from db by questionId(initial(1)) clone! shuffled!
         try{
             selectedQuestion = questions.getQuestionCloneById(questionId);
+            selectedQuestion.ShuffleMyAnswersForDisplay();
         }
         catch (CloneNotSupportedException e){
             Log.e("Cloning question failed", e.getMessage());
@@ -129,17 +140,18 @@ public class Quiz extends AppCompatActivity {
         questionImage.setImageDrawable(newPicture);
 
         //Set question and answers
-        quizTitleView.setText("Quiz step:" + step);
+        setDefaultButtonBackgroundToAllAnswersBtns();
+        quizTitleView.setText("Quiz step: " + step);
         questionView.setText(selectedQuestion.getQuestion());
-        answer1Btn.setText(selectedQuestion.getCorrectAnswer());
-        answer2Btn.setText(selectedQuestion.getWrongAnswer(1));
-        answer3Btn.setText(selectedQuestion.getWrongAnswer(2));
-        answer4Btn.setText(selectedQuestion.getWrongAnswer(3));
-
-
+        answer1Btn.setText(selectedQuestion.getAnswerById(0));
+        answer2Btn.setText(selectedQuestion.getAnswerById(1));
+        answer3Btn.setText(selectedQuestion.getAnswerById(2));
+        answer4Btn.setText(selectedQuestion.getAnswerById(3));
 
         // Sprawdź czy nie wychodzimy ponad liczbę pytań i wróć do początku
         if(questionId < size ){
+            score = answeredCorrect ? ++score : score;
+            scoreView.setText("Score: " + score);
             questionId ++;
             step ++;
         }
@@ -148,7 +160,12 @@ public class Quiz extends AppCompatActivity {
             step = 1;
         }
 
+    }
 
+    private void setDefaultButtonBackgroundToAllAnswersBtns(){
+        for (Button button: answerButtons) {
+            button.setBackgroundColor(getResources().getColor(R.color.colorLigtGray));
+        }
     }
 
     private void CheckSelectedAnswer(Button selectedBtn){
@@ -156,14 +173,15 @@ public class Quiz extends AppCompatActivity {
         String answer = selectedBtn.getText().toString();
 
         if(selectedQuestion.getCorrectAnswer() == answer){
-            score ++;
+            answeredCorrect = true;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
-            Toast myToast = Toast.makeText(this, "sukces", Toast.LENGTH_SHORT);
+            Toast myToast = Toast.makeText(this, "Success", Toast.LENGTH_SHORT);
             myToast.show();
         }
         else{
+            answeredCorrect = false;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorFailure));
-            Toast myToast = Toast.makeText(this, "porażka", Toast.LENGTH_SHORT);
+            Toast myToast = Toast.makeText(this, "Failure", Toast.LENGTH_SHORT);
             myToast.show();
         }
     }
