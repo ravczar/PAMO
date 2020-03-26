@@ -10,25 +10,38 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pjatk.s16281.model.QuestionDatabase;
+import com.pjatk.s16281.model.QuestionItem;
 
 public class Quiz extends AppCompatActivity {
-    private Button backToMain;
+    private Button backToMainButton, nextQuestionButton, answer1Btn, answer2Btn, answer3Btn, answer4Btn;
+    private TextView questionView;
     private ImageView questionImage;
-    private int score;
+    private int score, questionId;
     private QuestionDatabase questions;
+    private QuestionItem selectedQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
-        // BTN initialize
-        backToMain = findViewById(R.id.quiz_back);
+        // BTN, View initialize
+        backToMainButton = findViewById(R.id.quiz_back);
+        answer1Btn = findViewById(R.id.btn_answer_1);
+        answer2Btn = findViewById(R.id.btn_answer_2);
+        answer3Btn = findViewById(R.id.btn_answer_3);
+        answer4Btn = findViewById(R.id.btn_answer_4);
+        questionView = findViewById(R.id.qestion_view);
+        nextQuestionButton = findViewById(R.id.button_next);
         questionImage = findViewById(R.id.quiz_image);
 
-        // questions
+        // questions, questionId, score
+        questionId = 1;
+        score = 0;
         try{
             questions = new QuestionDatabase();
         }
@@ -36,16 +49,45 @@ public class Quiz extends AppCompatActivity {
             Log.e("Error", ex.getMessage());
         }
 
-
         // set images
-        Drawable newPicture = getResources().getDrawable( R.drawable.ic_launcher_foreground );
+        Drawable newPicture = getResources().getDrawable(R.drawable.ic_launcher_background);
         questionImage.setImageDrawable(newPicture);
 
         //Back to main activity listener
-        backToMain.setOnClickListener(new View.OnClickListener(){
+        backToMainButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 returnToMainActivity();
+            }
+        });
+        nextQuestionButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                nextQuestion();
+            }
+        });
+        answer1Btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                CheckSelectedAnswer(answer1Btn);
+            }
+        });
+        answer2Btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                CheckSelectedAnswer(answer2Btn);
+            }
+        });
+        answer3Btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                CheckSelectedAnswer(answer3Btn);
+            }
+        });
+        answer4Btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                CheckSelectedAnswer(answer4Btn);
             }
         });
 
@@ -61,6 +103,49 @@ public class Quiz extends AppCompatActivity {
         resultIntent.putExtra("score_return", getScoreValue());
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
+    }
+
+    private void nextQuestion(){
+        int size = questions.getDatabaseSize();
+
+        // Question from db by questionId(initial(1))
+        selectedQuestion = questions.getQuestionById(questionId);
+
+        // Draw image
+        Drawable newPicture = getResources().getDrawable(selectedQuestion.getPhoto());
+        questionImage.setImageDrawable(newPicture);
+
+        //Set question and answers
+        questionView.setText(selectedQuestion.getQuestion());
+        answer1Btn.setText(selectedQuestion.getCorrectAnswer());
+        answer2Btn.setText(selectedQuestion.getWrongAnswer(1));
+        answer3Btn.setText(selectedQuestion.getWrongAnswer(2));
+        answer4Btn.setText(selectedQuestion.getWrongAnswer(3));
+
+
+
+        // Sprawdź czy nie wychodzimy ponad liczbę pytań i wróć do początku
+        if(questionId < size )
+            questionId ++;
+        else
+            questionId = 1;
+
+    }
+
+    private void CheckSelectedAnswer(Button selectedBtn){
+        // Pobierz nazwę klikniętego przycisku
+        String answer = selectedBtn.getText().toString();
+
+        if(selectedQuestion.getCorrectAnswer() == answer){
+            selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
+            Toast myToast = Toast.makeText(this, "sukces", Toast.LENGTH_SHORT);
+            myToast.show();
+        }
+        else{
+            selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorFailure));
+            Toast myToast = Toast.makeText(this, "porażka", Toast.LENGTH_SHORT);
+            myToast.show();
+        }
     }
 
 }

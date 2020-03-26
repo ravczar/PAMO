@@ -24,8 +24,6 @@ public class RecipeDatabase {
 
         return proposed.size() > 0 ? getRandomRecipeFromSelectedRecipes(proposed) : recipeNotFoundItem();
 
-
-
     }
 
     private RecipeItem getRandomRecipeFromSelectedRecipes( ArrayList<RecipeItem> selectedItems){

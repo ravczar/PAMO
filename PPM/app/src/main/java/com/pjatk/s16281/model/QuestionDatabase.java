@@ -1,20 +1,26 @@
 package com.pjatk.s16281.model;
 
+import com.pjatk.s16281.R;
 import java.util.ArrayList;
 
 public class QuestionDatabase {
-    private ArrayList<QuestionItem> questions = new ArrayList<>();
+    private ArrayList<QuestionItem> questions;
 
-    public QuestionDatabase(){ addQuestionToDatabase(); }
+    public QuestionDatabase(){
+        this.questions = new ArrayList<>();
+        addQuestionToDatabase();
+    }
 
-    public QuestionItem getQuestionById(int id){
-        return questions.get(id);
+    public QuestionItem getQuestionById(int id){ return questions.get(id-1); }
+
+    public int getDatabaseSize(){
+        return questions.size();
     }
 
     private void addQuestionToDatabase(){
         questions.add(new QuestionItem(
                 "Dlaczego w nazwie wirusa występuje słowo 'korona'? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona4,
                 "cząsteczki wirusa otoczone są strukturą w formie korony",
                 "wyodrębniono go z rośliny 'wilczomlecza', czyli korony cierniowej",
                 "pierwszym zakażonym na świecie był król Chin",
@@ -22,7 +28,7 @@ public class QuestionDatabase {
         ));
         questions.add(new QuestionItem(
                 "Jak brzmi pełna nazwa koronawirusa? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona7,
                 "SARS-CoV-2",
                 "nCov-2020",
                 "nCov-2019",
@@ -30,7 +36,7 @@ public class QuestionDatabase {
         ));
         questions.add(new QuestionItem(
                 "Jaką chorobę powoduje nowy koronawirus? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona5,
                 "zapalenie płuc",
                 "długotrwały wzwód",
                 "niechęć do nauki",
@@ -38,7 +44,7 @@ public class QuestionDatabase {
         ));
         questions.add(new QuestionItem(
                 "Jaką chronić się przed wirusem? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona6,
                 "myć ręce, nie dotykać twarzy, omijać chorych",
                 "brać leki przeciwzapalne",
                 "przestać wychodzić w domu",
@@ -46,7 +52,7 @@ public class QuestionDatabase {
         ));
         questions.add(new QuestionItem(
                 "Ile czasu powinno trwać właściwe mycie rąk? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona2,
                 "20 sekund",
                 "2 minuty",
                 "10 sekund",
@@ -54,15 +60,15 @@ public class QuestionDatabase {
         ));
         questions.add(new QuestionItem(
                 "Co należy zrobić kiedy podejrzewamy zakażenie wirusem? ",
-                "@drawable/ic_launcher_foreground",
-                "zadzwonić na 997",
+                R.drawable.korona8,
                 "zadzwonić na specjalną infolinię",
+                "zadzwonić na 997",
                 "pojechać autobusem do przychodni",
                 "zadzwonić po AS Bytom"
         ));
         questions.add(new QuestionItem(
                 "Jakie obiawy daje zakażenie koronawirusem? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona3,
                 "kaszel, duszności, ból mięśni, gorączka",
                 "katar, biegunka, ból głowy",
                 "wysypka, biegunka, ból brzucha",
@@ -70,7 +76,7 @@ public class QuestionDatabase {
         ));
         questions.add(new QuestionItem(
                 "Co chroni przed zakażeniem koronawirusem? ",
-                "@drawable/ic_launcher_foreground",
+                R.drawable.korona1,
                 "absolutnie nic",
                 "maseczka antybakteryjna/antywirusowa",
                 "prezerywatywy",

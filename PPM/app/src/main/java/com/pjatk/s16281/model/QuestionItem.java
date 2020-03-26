@@ -1,22 +1,25 @@
 package com.pjatk.s16281.model;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 
 public class QuestionItem {
     private String question;
-    private String photo;
+    private int quizPicture;
     private ArrayList <String> answers;
 
     public QuestionItem(
             String question,
-            String photoLink,
+            int picture,
             String correctAn,
             String wrongAn1,
             String wrongAn2,
             String wrongAn3)
     {
+        this.answers = new ArrayList<>();
         this.question = question;
-        this.photo = photoLink;
+        this.quizPicture = picture;
         this.answers.add(correctAn);
         this.answers.add(wrongAn1);
         this.answers.add(wrongAn2);
@@ -29,9 +32,18 @@ public class QuestionItem {
     public String getCorrectAnswer() {
         return answers.get(0);
     }
-    public String getPhoto() { return photo; }
-    public String getWrongAnswer(int id){ // 2,3,4
-        return this.answers.get(id - 1);
+    public int getPhoto() { return quizPicture; }
+    public String getWrongAnswer(int id){ return this.answers.get(id); }
+
+
+    public int getIdOfQuestionSting(String answerChecked){
+        if(answers.contains(answerChecked)){
+            for(String answer : answers){
+                if(answer.equals(answerChecked))
+                    return answers.indexOf(answer);
+            }
+        }
+        return -1;
     }
 
 
