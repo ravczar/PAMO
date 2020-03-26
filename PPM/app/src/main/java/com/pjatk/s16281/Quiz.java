@@ -20,14 +20,15 @@ import com.pjatk.s16281.model.QuestionItem;
 import java.text.MessageFormat;
 
 public class Quiz extends AppCompatActivity {
-    private Button backToMainButton, nextQuestionButton, answer1Btn, answer2Btn, answer3Btn, answer4Btn;
+    private Button backToMainButton, againButton, nextButton,
+            answer1Btn, answer2Btn, answer3Btn, answer4Btn;
     private Button[] answerButtons;
     private TextView questionView, quizTitleView, scoreView;
     private ImageView questionImage;
-    private int score, questionId, step, questionsTotalCount;
+    private int score, scoreFromStage, questionId, step, questionsTotalCount;
     private QuestionDatabase questions;
     private QuestionItem selectedQuestion;
-    private Boolean answeredCorrect, answerAlreadyGiven;
+    private Boolean answeredCorrect, answerWasChanged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,8 @@ public class Quiz extends AppCompatActivity {
         questionView = findViewById(R.id.qestion_view);
         quizTitleView = findViewById(R.id.quiz_title);
         scoreView = findViewById(R.id.score_view);
-        nextQuestionButton = findViewById(R.id.button_next);
+        againButton = findViewById(R.id.button_next);
+        nextButton = findViewById(R.id.button_next_2);
         questionImage = findViewById(R.id.quiz_image);
 
         // questions, questionId, score
@@ -52,7 +54,7 @@ public class Quiz extends AppCompatActivity {
         score = 0;
         step = 1;
         answeredCorrect = false;
-        answerAlreadyGiven = false;
+        answerWasChanged = false;
         try{
             questions = new QuestionDatabase();
             questionsTotalCount = questions.getQuestionCount();
@@ -69,7 +71,19 @@ public class Quiz extends AppCompatActivity {
                 returnToMainActivity();
             }
         });
-        nextQuestionButton.setOnClickListener(new View.OnClickListener(){
+        nextButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                try{
+                    score = answeredCorrect ? score += scoreFromStage : score;
+                    nextQuestion();
+                }
+                catch (CloneNotSupportedException e){
+                    Log.e("Next question fail", e.getMessage());
+                }
+            }
+        });
+        againButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 try{
@@ -86,12 +100,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer1Btn);
-                answerAlreadyGiven = true;
-                try{
-                    nextQuestion();
-                } catch (Exception e){
-                    Log.e("Fail on next step", e.getMessage());
-                }
+                answerWasChanged = true;
             }
         });
         answer2Btn.setOnClickListener(new View.OnClickListener(){
@@ -99,13 +108,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer2Btn);
-                answerAlreadyGiven = true;
-                try{
-                    nextQuestion();
-                } catch (Exception e){
-                    Log.e("Fail after assess score", e.getMessage());
-                }
-
+                answerWasChanged = true;
             }
         });
         answer3Btn.setOnClickListener(new View.OnClickListener(){
@@ -113,12 +116,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer3Btn);
-                answerAlreadyGiven = true;
-                try{
-                    nextQuestion();
-                } catch (Exception e){
-                    Log.e("Fail after assess score", e.getMessage());
-                }
+                answerWasChanged = true;
             }
         });
         answer4Btn.setOnClickListener(new View.OnClickListener(){
@@ -126,12 +124,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer4Btn);
-                answerAlreadyGiven = true;
-                try{
-                    nextQuestion();
-                } catch (Exception e){
-                    Log.e("Fail after assess score", e.getMessage());
-                }
+                answerWasChanged = true;
             }
         });
 
@@ -149,6 +142,9 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void nextQuestion() throws CloneNotSupportedException {
+        // init values for new question
+        answerWasChanged = false;
+        scoreFromStage = 0;
         int size = questions.getDatabaseSize();
 
         // Question from db by questionId(initial(1)) clone! shuffled!
@@ -201,22 +197,28 @@ public class Quiz extends AppCompatActivity {
         // Get text displayed in answer button that was clicked
         String answer = selectedBtn.getText().toString();
 
-        if(selectedQuestion.getCorrectAnswer() == answer){
+        if (selectedQuestion.getCorrectAnswer() == answer && !answerWasChanged){
             answeredCorrect = true;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
+            scoreFromStage = answeredCorrect ? 1 : 0;
             makeAnswerAssessmentToast(answeredCorrect);
-            score = answeredCorrect ? ++score : score;
-
         }
-        else{
+        else if (selectedQuestion.getCorrectAnswer() == answer && answerWasChanged){
+            answeredCorrect = true;
+            selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
+            scoreFromStage = 0;
+            makeAnswerAssessmentToast(answeredCorrect);
+        } else {
             answeredCorrect = false;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorFailure));
+            scoreFromStage = !answeredCorrect ? 0 : 1;
             makeAnswerAssessmentToast(answeredCorrect);
         }
     }
 
     private void makeAnswerAssessmentToast(Boolean answerStatus){
-        String text = answerStatus ? "Success :)" : "Failure :(";
+        String scoreReceived = scoreFromStage == 1 ? " Scored: 1 point" : " Scored 0 points";
+        String text = answerStatus ? "Good answer :)"+ scoreReceived : "Bad answer :(" + scoreReceived;
         int toastBg = answerStatus ? getResources().getColor(R.color.colorSuccess) : getResources().getColor(R.color.colorFailure);
 
         Toast myToast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
@@ -248,7 +250,8 @@ public class Quiz extends AppCompatActivity {
         answer2Btn.setVisibility(View.INVISIBLE);
         answer3Btn.setVisibility(View.INVISIBLE);
         answer4Btn.setVisibility(View.INVISIBLE);
-        nextQuestionButton.setVisibility(View.VISIBLE);
+        nextButton.setVisibility(View.INVISIBLE);
+        againButton.setVisibility(View.VISIBLE);
     }
 
     private void displayAllQuizRelatedItems(){
@@ -259,7 +262,8 @@ public class Quiz extends AppCompatActivity {
         answer2Btn.setVisibility(View.VISIBLE);
         answer3Btn.setVisibility(View.VISIBLE);
         answer4Btn.setVisibility(View.VISIBLE);
-        nextQuestionButton.setVisibility(View.INVISIBLE);
+        nextButton.setVisibility(View.VISIBLE);
+        againButton.setVisibility(View.INVISIBLE);
     }
 
 }
