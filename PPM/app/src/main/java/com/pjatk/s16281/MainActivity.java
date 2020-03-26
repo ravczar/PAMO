@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
     private double bmiValue, ppmValue, heightValue, weightValue, ageValue ;
-    private int scoreValue;
+    private int scoreValue, questionCount;
     private String sexValue;
     private Button bmiButton,ppmButton, recipeButton, quizButton, chartButton;
     private TextView bmiView, ppmView, sexView, quizView;
@@ -152,8 +152,10 @@ public class MainActivity extends AppCompatActivity {
             case (3) : {
                 if (resultCode == Activity.RESULT_OK) {
                     scoreValue = data.getIntExtra("score_return", 0);
+                    questionCount = data.getIntExtra("question_count_return", 0);
                     if (scoreValue != 0 && scoreValue > 0) {
-                        quizView.setText(Integer.toString(scoreValue));
+                        double percent  = (double)scoreValue/(double)questionCount*100;
+                        quizView.setText(Double.toString(percent) + " %");
                     }
                 }
                 break;

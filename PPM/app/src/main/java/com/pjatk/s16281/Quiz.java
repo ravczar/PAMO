@@ -24,10 +24,10 @@ public class Quiz extends AppCompatActivity {
     private Button[] answerButtons;
     private TextView questionView, quizTitleView, scoreView;
     private ImageView questionImage;
-    private int score, questionId, step;
+    private int score, questionId, step, questionsTotalCount;
     private QuestionDatabase questions;
     private QuestionItem selectedQuestion;
-    private Boolean answeredCorrect;
+    private Boolean answeredCorrect, answerAlreadyGiven;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +52,15 @@ public class Quiz extends AppCompatActivity {
         score = 0;
         step = 1;
         answeredCorrect = false;
+        answerAlreadyGiven = false;
         try{
             questions = new QuestionDatabase();
+            questionsTotalCount = questions.getQuestionCount();
+            nextQuestion();
         }
         catch(Exception ex){
             Log.e("Error", ex.getMessage());
         }
-
-        // set images
-        Drawable newPicture = getResources().getDrawable(R.drawable.ic_launcher_background);
-        questionImage.setImageDrawable(newPicture);
 
         //Back to main activity listener
         backToMainButton.setOnClickListener(new View.OnClickListener(){
@@ -74,6 +73,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 try{
+                    score = 0;
                     nextQuestion();
                 }
                 catch (CloneNotSupportedException e){
@@ -86,6 +86,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer1Btn);
+                answerAlreadyGiven = true;
                 try{
                     nextQuestion();
                 } catch (Exception e){
@@ -98,6 +99,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer2Btn);
+                answerAlreadyGiven = true;
                 try{
                     nextQuestion();
                 } catch (Exception e){
@@ -111,6 +113,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer3Btn);
+                answerAlreadyGiven = true;
                 try{
                     nextQuestion();
                 } catch (Exception e){
@@ -123,6 +126,7 @@ public class Quiz extends AppCompatActivity {
             public void onClick(View v){
                 setDefaultButtonBackgroundToAllAnswersBtns();
                 CheckSelectedAnswer(answer4Btn);
+                answerAlreadyGiven = true;
                 try{
                     nextQuestion();
                 } catch (Exception e){
@@ -140,6 +144,7 @@ public class Quiz extends AppCompatActivity {
     private void returnToMainActivity(){
         Intent resultIntent = new Intent();
         resultIntent.putExtra("score_return", getScoreValue());
+        resultIntent.putExtra("question_count_return", questionsTotalCount);
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
     }
@@ -162,23 +167,26 @@ public class Quiz extends AppCompatActivity {
 
         //Set question and answers
         setDefaultButtonBackgroundToAllAnswersBtns();
-        quizTitleView.setText("Quiz step: " + step);
+        quizTitleView.setText("Quiz step: " + step + "/8");
         questionView.setText(selectedQuestion.getQuestion());
         answer1Btn.setText(selectedQuestion.getAnswerById(0));
         answer2Btn.setText(selectedQuestion.getAnswerById(1));
         answer3Btn.setText(selectedQuestion.getAnswerById(2));
         answer4Btn.setText(selectedQuestion.getAnswerById(3));
+        scoreView.setText("Score: " + score);
+
+        // Display on View
+        displayAllQuizRelatedItems();
 
         // Check if we do not exceed number of available questions
-        if(questionId < size ){
-            score = answeredCorrect ? ++score : score;
-            scoreView.setText("Score: " + score);
+        if(questionId <= size-1 ){
             questionId ++;
             step ++;
         }
         else{
             questionId = 1;
             step = 1;
+            hideAllQuizRelatedItems();
         }
 
     }
@@ -196,16 +204,18 @@ public class Quiz extends AppCompatActivity {
         if(selectedQuestion.getCorrectAnswer() == answer){
             answeredCorrect = true;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
-            makeAnswerAssesmentToast(answeredCorrect);
+            makeAnswerAssessmentToast(answeredCorrect);
+            score = answeredCorrect ? ++score : score;
+
         }
         else{
             answeredCorrect = false;
             selectedBtn.setBackgroundColor(getResources().getColor(R.color.colorFailure));
-            makeAnswerAssesmentToast(answeredCorrect);
+            makeAnswerAssessmentToast(answeredCorrect);
         }
     }
 
-    private void makeAnswerAssesmentToast(Boolean answerStatus){
+    private void makeAnswerAssessmentToast(Boolean answerStatus){
         String text = answerStatus ? "Success :)" : "Failure :(";
         int toastBg = answerStatus ? getResources().getColor(R.color.colorSuccess) : getResources().getColor(R.color.colorFailure);
 
@@ -214,6 +224,28 @@ public class Quiz extends AppCompatActivity {
         View view = myToast.getView();
         view.setBackgroundColor(toastBg);
         myToast.show();
+    }
+
+    private void hideAllQuizRelatedItems(){
+        quizTitleView.setVisibility(View.INVISIBLE);
+        questionImage.setVisibility(View.INVISIBLE);
+        questionView.setVisibility(View.INVISIBLE);
+        answer1Btn.setVisibility(View.INVISIBLE);
+        answer2Btn.setVisibility(View.INVISIBLE);
+        answer3Btn.setVisibility(View.INVISIBLE);
+        answer4Btn.setVisibility(View.INVISIBLE);
+        nextQuestionButton.setVisibility(View.VISIBLE);
+    }
+
+    private void displayAllQuizRelatedItems(){
+        quizTitleView.setVisibility(View.VISIBLE);
+        questionImage.setVisibility(View.VISIBLE);
+        questionView.setVisibility(View.VISIBLE);
+        answer1Btn.setVisibility(View.VISIBLE);
+        answer2Btn.setVisibility(View.VISIBLE);
+        answer3Btn.setVisibility(View.VISIBLE);
+        answer4Btn.setVisibility(View.VISIBLE);
+        nextQuestionButton.setVisibility(View.INVISIBLE);
     }
 
 }

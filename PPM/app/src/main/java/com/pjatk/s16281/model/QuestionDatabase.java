@@ -11,6 +11,7 @@ public class QuestionDatabase {
         addQuestionToDatabase();
     }
 
+    public int getQuestionCount() { return questions.size()-1; } // one fake question
     public QuestionItem getQuestionById(int id){ return questions.get(id-1); }
     public QuestionItem getQuestionCloneById(int id) throws CloneNotSupportedException {
         return questions.get(id-1).clone();
@@ -21,6 +22,7 @@ public class QuestionDatabase {
     }
 
     private void addQuestionToDatabase(){
+        // Q1
         questions.add(new QuestionItem(
                 "Dlaczego w nazwie wirusa występuje słowo 'korona'? ",
                 R.drawable.korona4,
@@ -29,6 +31,7 @@ public class QuestionDatabase {
                 "pierwszym zakażonym na świecie był król Chin",
                 "wirus kolokwialnie koronuje zdrowe komórki"
         ));
+        // Q2
         questions.add(new QuestionItem(
                 "Jak brzmi pełna nazwa koronawirusa? ",
                 R.drawable.korona7,
@@ -37,6 +40,7 @@ public class QuestionDatabase {
                 "nCov-2019",
                 "Covid-19"
         ));
+        // Q3
         questions.add(new QuestionItem(
                 "Jaką chorobę powoduje nowy koronawirus? ",
                 R.drawable.korona5,
@@ -45,6 +49,7 @@ public class QuestionDatabase {
                 "niechęć do Javy",
                 "konwersję na LGBT"
         ));
+        // Q4
         questions.add(new QuestionItem(
                 "Jaką chronić się przed wirusem? ",
                 R.drawable.korona6,
@@ -53,6 +58,7 @@ public class QuestionDatabase {
                 "przestać wychodzić w domu",
                 "jeść dużo nabiału"
         ));
+        // Q5
         questions.add(new QuestionItem(
                 "Ile czasu powinno trwać właściwe mycie rąk? ",
                 R.drawable.korona2,
@@ -61,6 +67,7 @@ public class QuestionDatabase {
                 "10 sekund",
                 "tyle co Zdrowaś Mario"
         ));
+        // Q6
         questions.add(new QuestionItem(
                 "Co należy zrobić kiedy podejrzewamy zakażenie wirusem? ",
                 R.drawable.korona8,
@@ -69,14 +76,16 @@ public class QuestionDatabase {
                 "pojechać autobusem do przychodni",
                 "zadzwonić po AS Bytom"
         ));
+        //Q7
         questions.add(new QuestionItem(
-                "Jakie obiawy daje zakażenie koronawirusem? ",
+                "Jakie objawy daje zakażenie koronawirusem? ",
                 R.drawable.korona3,
                 "kaszel, duszności, ból mięśni, gorączka",
                 "katar, biegunka, ból głowy",
                 "wysypka, biegunka, ból brzucha",
                 "przekrwione oczy, wypadanie włosów"
         ));
+        //Q8
         questions.add(new QuestionItem(
                 "Co chroni przed zakażeniem koronawirusem? ",
                 R.drawable.korona1,
@@ -84,6 +93,15 @@ public class QuestionDatabase {
                 "maseczka antybakteryjna/antywirusowa",
                 "prezerywatywy",
                 "szczepienia przeciw grypie"
+        ));
+        //Q9 - empty
+        questions.add(new QuestionItem(
+                "Empty ",
+                R.drawable.ic_launcher_background,
+                "Empty",
+                "Empty",
+                "Empty",
+                "Empty"
         ));
 
 
