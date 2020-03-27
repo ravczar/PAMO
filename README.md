@@ -21,9 +21,9 @@
 * 3) Chart display
 
 ## APP PLAN:
-![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/PAMO_PLAN.png)
+![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images/PAMO_PLAN.png)
 ## APP MAIN:
-![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/main.png)
+![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main.PNG)
 ## APP BMI:
 ![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/bmi.png)
 ## APP PPM:
