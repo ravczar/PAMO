@@ -13,20 +13,26 @@
 * 2) BMI calc
 * 3) BWR calc (Harris-Benedict)
 * 4) Example Recipe (what to eat based on BWR result)
-
-### Make sure create several views and simply go back and forth for training.
-
-## PL version:
-* Samodzielne zadanie wprowadzające; Rozbuduj apolikację z poprzednich zajęć. Dodaj funkcjonalności:
-* - Ekran startowy;
-* - Oblicz BMI; 
-* - Ile mogę zjeść kalorii [PPM] (wzor Benedicta-Harrisa)
-* - Co jeść w czasach CorivaVirusa? Rekomaendacja przepisu (weź pod uwagę BMI użytkownika)
+* Make sure create several views and simply go back and forth for training.
 
 ### Lab 3. Add to existing app from lab 2 (04.04.2020):
 * 1) Quiz game (OR)
 * 2) Any game (OR)
 * 3) Chart display
 
-##### App Plan below:
-![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/PAMO_PLAN.png)
+## APP PLAN:
+![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images/PAMO_PLAN.png)
+## APP MAIN:
+![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main.png)
+## APP BMI:
+![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images/bmi.png)
+## APP PPM:
+![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/ppm.png)
+## APP MAIN UPDATED:
+![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main_updated.png)
+## APP QUIZ:
+![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz.png)
+## APP QUIZ SUMMARY:
+![Pamo app_q_summary](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz_summary.png)
+## APP CHART:
+![Pamo app_chart](https://raw.githubusercontent.com/ravczar/PAMO/master/images/chart_corona.png)
