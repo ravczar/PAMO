@@ -21,18 +21,18 @@
 * 3) Chart display
 
 ## APP PLAN:
-![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images/PAMO_PLAN.png)
+![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/PAMO_PLAN.png)
 ## APP MAIN:
-![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main.png)
+![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/main.png)
 ## APP BMI:
-![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images/bmi.png)
+![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/bmi.png)
 ## APP PPM:
-![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/ppm.png)
+![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/ppm.png)
 ## APP MAIN UPDATED:
-![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main_updated.png)
+![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/main_updated.png)
 ## APP QUIZ:
-![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz.png)
+![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/quiz.png)
 ## APP QUIZ SUMMARY:
-![Pamo app_q_summary](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz_summary.png)
+![Pamo app_q_summary](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/quiz_summary.png)
 ## APP CHART:
-![Pamo app_chart](https://raw.githubusercontent.com/ravczar/PAMO/master/images/chart_corona.png)
+![Pamo app_chart](https://raw.githubusercontent.com/ravczar/PAMO/tree/master/images/chart_corona.png)
