@@ -28,11 +28,11 @@
 ![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images/bmi.PNG)
 ## APP PPM:
 ![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/ppm.PNG)
-## APP MAIN UPDATED:
-![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main_updated.PNG)
 ## APP QUIZ:
 ![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz.PNG)
 ## APP QUIZ SUMMARY:
 ![Pamo app_q_summary](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz_summary.PNG)
+## APP MAIN UPDATED:
+![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main_updated.PNG)
 ## APP CHART:
 ![Pamo app_chart](https://raw.githubusercontent.com/ravczar/PAMO/master/images/chart_corona.PNG)
