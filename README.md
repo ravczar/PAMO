@@ -24,7 +24,8 @@
 * 1) Main menu -OK
 * 2) BMI calc -OK
 * 3) BWR calc -OK
-* 4) Example Recipe -OK (60%)
+* 4) Example Recipe -OK 
+* ----- (circa 60%) -----
 * 5) Quiz game -NO
 * 6) Chart -NO
 

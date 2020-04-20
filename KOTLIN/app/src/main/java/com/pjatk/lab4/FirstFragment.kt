@@ -1,11 +1,14 @@
 package com.pjatk.lab4
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 
 /**
@@ -24,8 +27,31 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        view.findViewById<Button>(R.id.random_button).setOnClickListener {
+            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+            val currentCount = showCountTextView.text.toString().toInt()
+            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentCount)
+            Log.i("TAG!", "Wartosc argumentu $currentCount")
+            findNavController().navigate(action)
+        }
+        view.findViewById<Button>(R.id.toast_button).setOnClickListener {
+            val myToast = Toast.makeText(context, getString(R.string.hello_toast_text), Toast.LENGTH_SHORT)
+            myToast.show()
+        }
+        view.findViewById<Button>(R.id.count_button).setOnClickListener {
+            countMe(view)
         }
     }
+
+    private fun countMe(view: View){
+        // Get the text view
+        val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+        val countString = showCountTextView.text.toString()
+        var count = countString.toInt()
+        count++
+
+        showCountTextView.text = count.toString()
+    }
+
 }

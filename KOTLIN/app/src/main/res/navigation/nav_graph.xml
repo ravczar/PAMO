@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/menuFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -24,5 +24,50 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <argument
+            android:name="myArg"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/BMIFragment"
+        android:name="com.pjatk.lab4.BMIFragment"
+        android:label="fragment_bmi"
+        tools:layout="@layout/fragment_bmi" >
+        <action
+            android:id="@+id/action_BMIFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.pjatk.lab4.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_BMIFragment"
+            app:destination="@id/BMIFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_PPMFragment"
+            app:destination="@id/PPMFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PPMFragment"
+        android:name="com.pjatk.lab4.PPMFragment"
+        android:label="fragment_ppm"
+        tools:layout="@layout/fragment_ppm" >
+        <action
+            android:id="@+id/action_PPMFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.pjatk.lab4.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe" >
+        <action
+            android:id="@+id/action_recipeFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>
