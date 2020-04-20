@@ -20,6 +20,14 @@
 * 2) Any game (OR)
 * 3) Chart display
 
+### Lab 4. Revrite 50% of your functionality to Kotlin (25.04.2020):
+* 1) Main menu -OK
+* 2) BMI calc -OK
+* 3) BWR calc -OK
+* 4) Example Recipe -OK (60%)
+* 5) Quiz game -NO
+* 6) Chart -NO
+
 ## APP PLAN:
 ![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images/PAMO_PLAN.png)
 ## APP MAIN:
