@@ -27,9 +27,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.random_button).setOnClickListener {
+        view.findViewById<Button>(R.id.calculate_bmi_button).setOnClickListener {
             //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+            val showCountTextView = view.findViewById<TextView>(R.id.textView_title_recipe)
             val currentCount = showCountTextView.text.toString().toInt()
             val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentCount)
             Log.i("TAG!", "Wartosc argumentu $currentCount")
@@ -46,7 +46,7 @@ class FirstFragment : Fragment() {
 
     private fun countMe(view: View){
         // Get the text view
-        val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
+        val showCountTextView = view.findViewById<TextView>(R.id.textView_title_recipe)
         val countString = showCountTextView.text.toString()
         var count = countString.toInt()
         count++

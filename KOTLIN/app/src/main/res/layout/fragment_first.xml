@@ -8,7 +8,7 @@
     tools:context=".FirstFragment">
 
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/textView_title_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorGreen"
@@ -17,14 +17,14 @@
         android:textAlignment="center"
         android:textSize="72sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/random_button"
+        app:layout_constraintBottom_toTopOf="@id/calculate_bmi_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
     <Button
-        android:id="@+id/random_button"
+        android:id="@+id/calculate_bmi_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -53,8 +53,8 @@
         android:text="@string/count_button_text"
         android:background="@color/buttonBackground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/random_button"
+        app:layout_constraintEnd_toStartOf="@+id/calculate_bmi_button"
         app:layout_constraintStart_toEndOf="@+id/toast_button"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_recipe"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,6 +37,8 @@
 ![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images/bmi.PNG)
 ## APP PPM:
 ![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/ppm.PNG)
+## APP RECIPE:
+![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/recipe.PNG)
 ## APP QUIZ:
 ![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz.PNG)
 ## APP QUIZ SUMMARY:

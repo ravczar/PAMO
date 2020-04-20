@@ -17,4 +17,45 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_textview_title">Main Menu</string>
+    <string name="graph_button_text">Graph</string>
+    <string name="recipe_button_text">Recipe</string>
+    <string name="ppm_button_text">Ppm</string>
+    <string name="bmi_button_text">Bmi</string>
+    <string name="snackbar_main_message">RCZ : s16281</string>
+    <string name="bmi_title">BMI calculator</string>
+    <string name="calculate_button_text">calculate</string>
+    <string name="back_button_text">back</string>
+    <string name="height_textview_bmi">Your Height:</string>
+    <string name="weight_textview_bmi">Your Weight:</string>
+    <string name="result_textview_bmi">Calculate your BMI</string>
+    <string name="ppm_title">PPM calculator</string>
+    <string name="textview_man_ppm">Man</string>
+    <string name="textview_woman_ppm">Woman</string>
+    <string name="textview_result_ppm">Your result</string>
+    <string name="calculate_button_ppm">Calculate</string>
+    <string name="textview_weight_ppm">Your weight:</string>
+    <string name="textview_height_ppm">Your height:</string>
+    <string name="textview_age_ppm">Your age:</string>
+    <string name="textview_title_recipe">Recipe for you</string>
+    <string name="textview_bmi_recipe">Your BMI:</string>
+    <string name="textview_ppm_recipe">Your PPM:</string>
+    <string name="textview_bmi_val_recipe">Calculate your BMI first!</string>
+    <string name="textview_ppm_val_recipe">Calculate your PPM first!</string>
+    <string name="textview_recipe_title">Title:</string>
+    <string name="textview_recipe_desc">Description:</string>
+    <string name="textview_recipe_calories">Calories:</string>
+    <string name="textview_ing2">Ingredient:</string>
+    <string name="textview_ing1">Ingredient:</string>
+    <string name="textview_ing3">Ingredient:</string>
+    <string name="textview_ing4">Ingredient:</string>
+    <string name="textview_ing5">Ingredient:</string>
+    <string name="textview_ing6">Ingredient:</string>
+    <string name="textview_amount1">Amount:</string>
+    <string name="textview_amount2">Amount:</string>
+    <string name="textview_amount3">Amount:</string>
+    <string name="textview_amount4">Amount:</string>
+    <string name="textview_amount5">Amount:</string>
+    <string name="textview_amount6">Amount:</string>
+    <string name="show_recipe_button">Show recipe</string>
 </resources>
