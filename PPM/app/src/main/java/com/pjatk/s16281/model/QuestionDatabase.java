@@ -45,7 +45,7 @@ public class QuestionDatabase {
                 "Jaką chorobę powoduje nowy koronawirus? ",
                 R.drawable.korona5,
                 "zapalenie płuc",
-                "długotrwały wzwód",
+                "raka prostaty",
                 "niechęć do Javy",
                 "konwersję na LGBT"
         ));
