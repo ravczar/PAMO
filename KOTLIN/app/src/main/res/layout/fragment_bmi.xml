@@ -33,20 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textinput_height_bmi" />
 
-    <Button
-        android:id="@+id/button_back_recipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:background="@color/buttonBackground"
-        android:text="@string/recipe_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/back_button_bmi"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_result_bmi"
-        app:layout_constraintVertical_bias="0.493" />
-
     <EditText
         android:id="@+id/textinput_weight_bmi"
         android:layout_width="wrap_content"
@@ -84,11 +70,13 @@
         android:id="@+id/back_button_bmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="283dp"
         android:layout_marginEnd="40dp"
         android:background="@color/buttonBackground"
         android:text="@string/back_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_result_bmi" />
 
     <TextView

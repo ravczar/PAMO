@@ -6,10 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_ppm.*
@@ -116,9 +113,9 @@ class PPMFragment : Fragment() {
     }
 
     private fun calculatePPM(){
-        weight = weightInput?.text.toString().toDouble()
-        height = heightInput?.text.toString().toDouble()
-        age = ageInput?.text.toString().toDouble()
+        weight =  if(weightInput?.text.toString().isNullOrEmpty()) 0.0 else weightInput?.text.toString().toDouble()
+        height = if(heightInput?.text.toString().isNullOrEmpty()) 0.0 else heightInput?.text.toString().toDouble()
+        age = if(ageInput?.text.toString().isNullOrEmpty()) 0.0 else ageInput?.text.toString().toDouble()
 
         try {
             if(weight != 0.0 && height != 0.0 && age != 0.0){
@@ -129,6 +126,10 @@ class PPMFragment : Fragment() {
                     }
                 result?.text = "PPM result = ${ppm?.round(2)} [Cal]"
                 recipeBtn?.visibility = View.VISIBLE
+            }
+            else {
+                val myToast = Toast.makeText(context, getText(R.string.toast_ppm_text), Toast.LENGTH_SHORT)
+                myToast.show()
             }
         }
         catch(ex : Exception){

@@ -6,32 +6,6 @@
     app:startDestination="@id/menuFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.pjatk.lab4.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <argument
-            android:name="myString"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.pjatk.lab4.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <argument
-            android:name="myArg"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/BMIFragment"
         android:name="com.pjatk.lab4.BMIFragment"
         android:label="fragment_bmi"

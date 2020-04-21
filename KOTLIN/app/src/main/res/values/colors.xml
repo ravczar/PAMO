@@ -7,4 +7,8 @@
     <color name="colorBackground">#2196F3</color>
     <color name="buttonBackground">#BBDEFB</color>
     <color name="calculationResult">#E31B1B</color>
+    <color name="colorLight">#fdbb2d</color>
+    <color name="colorDark">#22c1c3</color>
+    <color name="colorGray">#978a87</color>
+    <color name="colorRed">#f72e03</color>
 </resources>

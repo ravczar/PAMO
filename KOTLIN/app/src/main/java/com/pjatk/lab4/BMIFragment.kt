@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlin.math.pow
 import kotlin.math.round
 import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_bmi.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,7 +57,6 @@ class BMIFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_bmi, container, false)
     }
 
-    // Best to use this why? : https://stackoverflow.com/questions/25119090/difference-between-oncreateview-and-onviewcreated-in-fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,15 +64,13 @@ class BMIFragment : Fragment() {
         height = 0.0
         bmi = 0.0
 
-        weightInput = view.findViewById(R.id.textinput_weight_bmi)
-        heightInput = view.findViewById(R.id.textinput_height_bmi)
-        resultTextViewDescription = view.findViewById(R.id.textview_result_bmi)
-        resultTextViewScore = view.findViewById(R.id.textview_result_score_bmi)
+        weightInput = textinput_weight_bmi
+        heightInput = textinput_height_bmi
+        resultTextViewDescription = textview_result_bmi
+        resultTextViewScore = textview_result_score_bmi
 
         view.findViewById<Button>(R.id.back_button_bmi).setOnClickListener {
-            // just navigate back
             //findNavController().navigate(R.id.action_BMIFragment_to_menuFragment)
-            // navigate with params
             val action = BMIFragmentDirections.actionBMIFragmentToMenuFragment(bmi.toString(),weight.toString(),height.toString())
             // trigger action
             findNavController().navigate(action)
@@ -93,15 +92,22 @@ class BMIFragment : Fragment() {
         height = if (heightInputTxt.isEmpty()) 0.0
         else heightInputTxt.toDouble()
 
-        // bmi calculation
-        bmi =  if(height!! > 0.0) weight!! / (height!! / 100).pow(2.0)
-        else 0.0
+        if( weight != 0.0 && height != 0.0){
+            // bmi calculation
+            bmi =  if(height!! > 0.0) weight!! / (height!! / 100).pow(2.0)
+            else 0.0
 
-        // rounding bmi result
-        bmi = bmi!!.round(2)
+            // rounding bmi result
+            bmi = bmi!!.round(2)
 
-        // display
-        displayBmiToResult()
+            // display
+            displayBmiToResult()
+        }
+        else {
+            val myToast = Toast.makeText(context, getText(R.string.toast_ppm_text), Toast.LENGTH_SHORT)
+            myToast.show()
+        }
+
     }
 
     // rounding double to appropriate number of places after dot

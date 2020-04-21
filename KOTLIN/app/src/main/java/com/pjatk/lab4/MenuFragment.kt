@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_menu.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,13 +55,12 @@ class MenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
-    // Best to use this why? : https://stackoverflow.com/questions/25119090/difference-between-oncreateview-and-onviewcreated-in-fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // init text views
-        bmiTextViewScore = view.findViewById(R.id.textView_bmi_score)
-        ppmTextViewTitle = view.findViewById(R.id.textView_ppm_score)
-        genderTextViewScore = view.findViewById(R.id.textView_sex_score)
+        bmiTextViewScore = textView_bmi_score
+        ppmTextViewTitle = textView_ppm_score
+        genderTextViewScore = textView_sex_score
 
         // Body buttons nav
         view.findViewById<Button>(R.id.bmi_button).setOnClickListener {
