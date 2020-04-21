@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_recipe.*
@@ -27,6 +29,11 @@ class RecipeFragment : Fragment() {
 
     private val ppmViewArgs: RecipeFragmentArgs? by navArgs()
     private var ppm: Double? = null
+    private var imageView: ImageView? = null
+    private var recipeDesc: TextView? = null
+    private var recipeIngr: TextView? = null
+    private var showRecipeBtn: Button? = null
+    private var isRecipeDisplayed: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,17 +55,47 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_recipe).setOnClickListener {
+        showRecipeBtn = button_show_recipe
+        imageView = imageView_photo
+        recipeDesc = textView_description
+        recipeIngr = textView_ingredients
+
+        button_show_recipe.setOnClickListener {
+            displayRecipeConditional()
+            isRecipeDisplayed = !isRecipeDisplayed
+        }
+        button_back_recipe.setOnClickListener {
             findNavController().navigate(R.id.action_recipeFragment_to_PPMFragment)
         }
 
         catchIncomingActionParamsFromPPM()
         displayPpmValue()
+
     }
 
+    private fun displayRecipeConditional(){
+        if(ppm != null && ppm != 0.0) {
+            if( !isRecipeDisplayed ){
+                imageView?.visibility = View.VISIBLE
+                recipeDesc?.visibility = View.VISIBLE
+                recipeIngr?.visibility = View.VISIBLE
+                isRecipeDisplayed = false
+                showRecipeBtn?.text = "Hide Recipe"
+
+            }
+            else {
+                isRecipeDisplayed = true
+                showRecipeBtn?.text = "Show Recipe"
+                imageView?.visibility = View.INVISIBLE
+                recipeDesc?.visibility = View.INVISIBLE
+                recipeIngr?.visibility = View.INVISIBLE
+            }
+        }
+
+    }
     private fun catchIncomingActionParamsFromPPM(){
         // importowanie danych z argumentów
-        ppm = if (ppmViewArgs?.ppm == "no_value") 0.0 else ppmViewArgs!!.ppm?.toDouble()
+        ppm = if (ppmViewArgs?.ppm == "no_value") 0.0 else ppmViewArgs!!.ppm.toDouble()
     }
 
     private fun displayPpmValue(){
