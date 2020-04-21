@@ -20,15 +20,18 @@
 * 2) Any game (OR)
 * 3) Chart display
 
+# Folder:"./KOTLIN"
+
 ### Lab 4. Revrite 50% of your functionality to Kotlin (25.04.2020):
 * 1) Main menu -OK
 * 2) BMI calc -OK
 * 3) BWR calc -OK
 * 4) Example Recipe -OK 
-* ----- (circa 60%) -----
-* 5) Quiz game -NO
-* 6) Chart -NO
+* 5) Quiz game -NOT OK
+* 6) Chart -OK
+----- (circa 70%) -----
 
+# PPM project overwiev
 ## APP PLAN:
 ![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images/PAMO_PLAN.png)
 ## APP MAIN:
@@ -44,6 +47,22 @@
 ## APP QUIZ SUMMARY:
 ![Pamo app_q_summary](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz_summary.PNG)
 ## APP MAIN UPDATED:
-![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main_updated.PNG)
+![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/imagesn/main_updated.PNG)
 ## APP CHART:
 ![Pamo app_chart](https://raw.githubusercontent.com/ravczar/PAMO/master/images/chart_corona.PNG)
+
+# KOTLIN project overwiev
+## APP PLAN:
+![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/0app_plan.PNG)
+## APP MAIN:
+![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/1menu.PNG)
+## APP BMI:
+![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/2bmi.PNG)
+## APP PPM:
+![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/3ppm.PNG)
+## APP RECIPE:
+![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/4.recipes.PNG)
+## APP GRAPH:
+![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/5covid_graph.PNG)
+
+
