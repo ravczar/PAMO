@@ -35,6 +35,7 @@ class PPMFragment : Fragment() {
     private var heightInput: EditText? = null
     private var ageInput: EditText? = null
     private var calcBtn: Button? = null
+    private var recipeBtn: Button? = null
     private var calcResult: TextView? = null
     private var result: TextView? = null
     private var maleTextView: TextView? = null
@@ -71,6 +72,7 @@ class PPMFragment : Fragment() {
         height = 0.0
         age = 0.0
 
+        recipeBtn = recipe_button_ppm
         maleTextView = textView_man_ppm
         femaleTextView = textView_woman_ppm
         genderInput = gender_switch_ppm
@@ -82,7 +84,7 @@ class PPMFragment : Fragment() {
         result = textView_result_ppm
 
 
-        gender_switch_ppm.setOnCheckedChangeListener { _, isChecked ->
+        view.findViewById<Switch>(R.id.gender_switch_ppm).setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // Enabled
                 gender = true;
@@ -98,6 +100,12 @@ class PPMFragment : Fragment() {
 
         view.findViewById<Button>(R.id.calculate_button_ppm).setOnClickListener {
             calculatePPM()
+        }
+
+        view.findViewById<Button>(R.id.recipe_button_ppm).setOnClickListener {
+            //findNavController().navigate(R.id.action_PPMFragment_to_recipeFragment)
+            val action = PPMFragmentDirections.actionPPMFragmentToRecipeFragment(ppm?.round(2).toString())
+            findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.back_button_ppm).setOnClickListener {
@@ -119,6 +127,7 @@ class PPMFragment : Fragment() {
                         66.5 + 13.75 * weight!! + 5.003 * height!! - 6.775 * age!!
                     }
                 result?.text = "PPM result = ${ppm?.round(2)} [Cal]"
+                recipeBtn?.visibility = View.VISIBLE
             }
         }
         catch(ex : Exception){

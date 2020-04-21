@@ -47,20 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_sex_score" />
 
-    <Button
-        android:id="@+id/back_button_recipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="80dp"
-        android:background="@color/buttonBackground"
-        android:text="@string/recipe_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/graph_button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bmi_button"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/graph_button"

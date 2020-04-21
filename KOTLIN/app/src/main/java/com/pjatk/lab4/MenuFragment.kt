@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -70,9 +69,6 @@ class MenuFragment : Fragment() {
         view.findViewById<Button>(R.id.ppm_button).setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_PPMFragment)
         }
-        view.findViewById<Button>(R.id.back_button_recipe).setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_recipeFragment)
-        }
         view.findViewById<Button>(R.id.graph_button).setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_graphFragment)
         }
@@ -83,9 +79,9 @@ class MenuFragment : Fragment() {
 
     private fun catchIncomingActionParamsFromBMI(){
         // importowanie danych z argumentów
-        bmiResult = if (bmiViewArgs?.bmi == "no_result") 0.0 else bmiViewArgs!!.bmi?.toDouble()
-        weight = if (bmiViewArgs?.weight == "no_result") 0.0 else bmiViewArgs!!.weight?.toDouble()
-        height = if (bmiViewArgs?.height == "no_result") 0.0 else bmiViewArgs!!.height?.toDouble()
+        bmiResult = if (bmiViewArgs?.bmi == "no_result") 0.0 else bmiViewArgs!!.bmi.toDouble()
+        weight = if (bmiViewArgs?.weight == "no_result") 0.0 else bmiViewArgs!!.weight.toDouble()
+        height = if (bmiViewArgs?.height == "no_result") 0.0 else bmiViewArgs!!.height.toDouble()
 
     }
 

@@ -70,4 +70,5 @@
     <string name="textview_main_bmi_score">Not available yet</string>
     <string name="textview_main_ppm_score">Not avialable yet</string>
     <string name="textview_main_sex_score">Not available yet</string>
+    <string name="button_recipe_text">To Recipes</string>
 </resources>

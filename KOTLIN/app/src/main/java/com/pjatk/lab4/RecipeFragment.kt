@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_recipe.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +24,9 @@ class RecipeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private val ppmViewArgs: RecipeFragmentArgs? by navArgs()
+    private var ppm: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +48,21 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.back_button_recipe).setOnClickListener {
-            findNavController().navigate(R.id.action_recipeFragment_to_menuFragment)
+        view.findViewById<Button>(R.id.button_recipe).setOnClickListener {
+            findNavController().navigate(R.id.action_recipeFragment_to_PPMFragment)
         }
 
+        catchIncomingActionParamsFromPPM()
+        displayPpmValue()
+    }
+
+    private fun catchIncomingActionParamsFromPPM(){
+        // importowanie danych z argumentów
+        ppm = if (ppmViewArgs?.ppm == "no_value") 0.0 else ppmViewArgs!!.ppm?.toDouble()
+    }
+
+    private fun displayPpmValue(){
+        textView_ppm_result.text = ppm.toString()
     }
 
     companion object {
