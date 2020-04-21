@@ -43,8 +43,8 @@ class PPMFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.back_button_bmi).setOnClickListener {
-            findNavController().navigate(R.id.action_BMIFragment_to_menuFragment)
+        view.findViewById<Button>(R.id.back_button_ppm).setOnClickListener {
+            findNavController().navigate(R.id.action_PPMFragment_to_menuFragment)
         }
 
     }

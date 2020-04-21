@@ -49,6 +49,15 @@ class MenuFragment : Fragment() {
         view.findViewById<Button>(R.id.bmi_button).setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_BMIFragment)
         }
+        view.findViewById<Button>(R.id.ppm_button).setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_PPMFragment)
+        }
+        view.findViewById<Button>(R.id.recipe_button).setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_recipeFragment)
+        }
+        view.findViewById<Button>(R.id.graph_button).setOnClickListener {
+            //findNavController().navigate(R.id.action_menuFragment_to_BMIFragment)
+        }
 
     }
 
