@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <argument
+            android:name="myString"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -54,6 +57,18 @@
         <action
             android:id="@+id/action_menuFragment_to_graphFragment"
             app:destination="@id/graphFragment" />
+        <argument
+            android:name="bmi"
+            app:argType="string"
+            android:defaultValue="no_result" />
+        <argument
+            android:name="weight"
+            app:argType="string"
+            android:defaultValue="no_result" />
+        <argument
+            android:name="height"
+            app:argType="string"
+            android:defaultValue="no_result" />
     </fragment>
     <fragment
         android:id="@+id/PPMFragment"

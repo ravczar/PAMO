@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 
 /**
  * A simple [Fragment] subclass.
@@ -22,6 +26,11 @@ class MenuFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    // My variables
+    private val bmiViewArgs: MenuFragmentArgs? by navArgs()
+    private var bmiTextViewScore: TextView? = null
+    private var ppmTextViewTitle: TextView? = null
+    private var genderTextViewScore: TextView? = null
     private var bmiResult: Double? = null
     private var ppmResult: Double? = null
     private var weight: Double? = null
@@ -49,6 +58,10 @@ class MenuFragment : Fragment() {
     // Best to use this why? : https://stackoverflow.com/questions/25119090/difference-between-oncreateview-and-onviewcreated-in-fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // init text views
+        bmiTextViewScore = view.findViewById(R.id.textView_bmi_score)
+        ppmTextViewTitle = view.findViewById(R.id.textView_ppm_score)
+        genderTextViewScore = view.findViewById(R.id.textView_sex_score)
 
         // Body buttons nav
         view.findViewById<Button>(R.id.bmi_button).setOnClickListener {
@@ -64,7 +77,20 @@ class MenuFragment : Fragment() {
             findNavController().navigate(R.id.action_menuFragment_to_graphFragment)
         }
 
+        catchIncomingActionParamsFromBMI()
+        displayResults()
+    }
 
+    private fun catchIncomingActionParamsFromBMI(){
+        // importowanie danych z argumentów
+        bmiResult = if (bmiViewArgs?.bmi == "no_result") 0.0 else bmiViewArgs!!.bmi?.toDouble()
+        weight = if (bmiViewArgs?.weight == "no_result") 0.0 else bmiViewArgs!!.weight?.toDouble()
+        height = if (bmiViewArgs?.height == "no_result") 0.0 else bmiViewArgs!!.height?.toDouble()
+
+    }
+
+    private fun displayResults(){
+        if(bmiResult != 0.0) bmiTextViewScore?.text = bmiResult.toString()
     }
 
 

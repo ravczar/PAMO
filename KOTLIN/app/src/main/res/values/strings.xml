@@ -64,4 +64,10 @@
     <string name="menu_text_recipe">Recipe</string>
     <string name="menu_text_graph">Graph</string>
     <string name="menu_main">Main</string>
+    <string name="textview_main_bmi_title">Your BMI:</string>
+    <string name="textview_main_ppm_tile">Your PPM:</string>
+    <string name="textview_main_sex_title">Your gender:</string>
+    <string name="textview_main_bmi_score">Not available yet</string>
+    <string name="textview_main_ppm_score">Not avialable yet</string>
+    <string name="textview_main_sex_score">Not available yet</string>
 </resources>

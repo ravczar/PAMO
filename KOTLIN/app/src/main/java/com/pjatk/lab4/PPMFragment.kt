@@ -1,12 +1,19 @@
 package com.pjatk.lab4
 
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Switch
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_ppm.*
+import java.lang.Exception
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +29,23 @@ class PPMFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private var genderInput: Switch? = null
+    private var weightInput: EditText? = null
+    private var heightInput: EditText? = null
+    private var ageInput: EditText? = null
+    private var calcBtn: Button? = null
+    private var calcResult: TextView? = null
+    private var result: TextView? = null
+    private var maleTextView: TextView? = null
+    private var femaleTextView: TextView? = null
+
+
+    private var gender: Boolean = false
+    private var weight: Double? = null
+    private var height: Double? = null
+    private var age: Double? = null
+    private var ppm: Double? = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +67,70 @@ class PPMFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        weight = 0.0
+        height = 0.0
+        age = 0.0
+
+        maleTextView = textView_man_ppm
+        femaleTextView = textView_woman_ppm
+        genderInput = gender_switch_ppm
+        weightInput = input_weight_ppm
+        heightInput = input_height_ppm
+        ageInput = input_age_ppm
+        calcBtn = calculate_button_ppm
+        calcResult = textView_result_ppm
+        result = textView_result_ppm
+
+
+        gender_switch_ppm.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Enabled
+                gender = true;
+                textView_man_ppm.setBackgroundColor(Color.TRANSPARENT)
+                textView_woman_ppm.setBackgroundColor(Color.YELLOW)
+            } else {
+                // Disabled
+                gender = false;
+                textView_man_ppm.setBackgroundColor(Color.GREEN)
+                textView_woman_ppm.setBackgroundColor(Color.TRANSPARENT)
+            }
+        }
+
+        view.findViewById<Button>(R.id.calculate_button_ppm).setOnClickListener {
+            calculatePPM()
+        }
+
         view.findViewById<Button>(R.id.back_button_ppm).setOnClickListener {
             findNavController().navigate(R.id.action_PPMFragment_to_menuFragment)
         }
 
+    }
+
+    private fun calculatePPM(){
+        weight = weightInput?.text.toString().toDouble()
+        height = heightInput?.text.toString().toDouble()
+        age = ageInput?.text.toString().toDouble()
+
+        try {
+            if(weight != 0.0 && height != 0.0 && age != 0.0){
+                ppm = if(gender){
+                        655.1 + 9.563 * weight!! + 1.85 * height!! - 4.676 * age!!
+                    } else{
+                        66.5 + 13.75 * weight!! + 5.003 * height!! - 6.775 * age!!
+                    }
+                result?.text = "PPM result = ${ppm?.round(2)} [Cal]"
+            }
+        }
+        catch(ex : Exception){
+            Log.e("PPM EX", ex.toString())
+        }
+    }
+
+    // rounding double to appropriate number of places after dot
+    private fun Double.round(decimals: Int): Double {
+        var multiplier = 1.0
+        repeat(decimals) { multiplier *= 10 }
+        return kotlin.math.round(this * multiplier) / multiplier
     }
 
     companion object {

@@ -28,7 +28,9 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            //findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            val action = SecondFragmentDirections.actionSecondFragmentToFirstFragment("DUPA")
+            findNavController().navigate(action)
         }
 
         // importowanie danych z argumentów

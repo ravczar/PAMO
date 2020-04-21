@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlin.math.pow
 import kotlin.math.round
+import androidx.navigation.fragment.navArgs
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,12 +59,22 @@ class BMIFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        weight = 0.0
+        height = 0.0
+        bmi = 0.0
+
         weightInput = view.findViewById(R.id.textinput_weight_bmi)
         heightInput = view.findViewById(R.id.textinput_height_bmi)
         resultTextViewDescription = view.findViewById(R.id.textview_result_bmi)
         resultTextViewScore = view.findViewById(R.id.textview_result_score_bmi)
+
         view.findViewById<Button>(R.id.back_button_bmi).setOnClickListener {
-            findNavController().navigate(R.id.action_BMIFragment_to_menuFragment)
+            // just navigate back
+            //findNavController().navigate(R.id.action_BMIFragment_to_menuFragment)
+            // navigate with params
+            val action = BMIFragmentDirections.actionBMIFragmentToMenuFragment(bmi.toString(),weight.toString(),height.toString())
+            // trigger action
+            findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.calculate_bmi_button).setOnClickListener {
@@ -97,7 +108,7 @@ class BMIFragment : Fragment() {
     private fun Double.round(decimals: Int): Double {
         var multiplier = 1.0
         repeat(decimals) { multiplier *= 10 }
-        return round(this * multiplier) / multiplier
+        return kotlin.math.round(this * multiplier) / multiplier
     }
 
     private fun displayBmiToResult(){
