@@ -99,9 +99,9 @@ class RecipeFragment : Fragment() {
     }
 
     private fun patchProperRecipeForUserPPMIntoView(){
-        var picture: Drawable? = null
-        var description: String? = null
-        var ingredients: String? = null
+        var picture: Drawable?
+        var description: String?
+        var ingredients: String?
         if(ppm!! < 1000){
             picture = resources.getDrawable(R.drawable.sausage)
             description = "Your ppm is low. You should put on some extra weight.It is time to eat s" +
@@ -131,8 +131,7 @@ class RecipeFragment : Fragment() {
         }
 
         // Draw image
-        val newPicture: Drawable = resources.getDrawable(R.drawable.pasta)
-        imageView?.setImageDrawable(newPicture)
+        imageView?.setImageDrawable(picture)
         recipeDesc?.text = description
         recipeIngr?.text = ingredients
 
