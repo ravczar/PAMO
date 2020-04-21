@@ -58,4 +58,10 @@
     <string name="textview_amount5">Amount:</string>
     <string name="textview_amount6">Amount:</string>
     <string name="show_recipe_button">Show recipe</string>
+    <string name="graph_textview_title">Graph</string>
+    <string name="menu_text_bmi">BMI</string>
+    <string name="menu_text_ppm">PPM</string>
+    <string name="menu_text_recipe">Recipe</string>
+    <string name="menu_text_graph">Graph</string>
+    <string name="menu_main">Main</string>
 </resources>

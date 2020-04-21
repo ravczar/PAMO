@@ -8,7 +8,7 @@ android:background="@color/colorBackground"
 tools:context=".BMIFragment">
 
     <TextView
-        android:id="@+id/textView_title_recipe"
+        android:id="@+id/textView_title_graph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -52,7 +52,7 @@ tools:context=".BMIFragment">
         android:text="@string/weight_textview_bmi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title_recipe" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_graph" />
 
     <TextView
         android:id="@+id/textview_result_bmi"
@@ -60,7 +60,7 @@ tools:context=".BMIFragment">
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/result_textview_bmi"
-        android:textColor="#E31B1B"
+        android:textColor="@color/calculationResult"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

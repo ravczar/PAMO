@@ -15,20 +15,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MenuFragment.newInstance] factory method to
+ * Use the [GraphFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MenuFragment : Fragment() {
+class GraphFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var bmiResult: Double? = null
-    private var ppmResult: Double? = null
-    private var weight: Double? = null
-    private var height: Double? = null
-    private var age: Double? = null
-    private var sex: Boolean? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,30 +36,18 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        return inflater.inflate(R.layout.fragment_graph, container, false)
     }
 
     // Best to use this why? : https://stackoverflow.com/questions/25119090/difference-between-oncreateview-and-onviewcreated-in-fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Body buttons nav
-        view.findViewById<Button>(R.id.bmi_button).setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_BMIFragment)
+        view.findViewById<Button>(R.id.back_button_graph).setOnClickListener {
+            findNavController().navigate(R.id.action_graphFragment_to_menuFragment)
         }
-        view.findViewById<Button>(R.id.ppm_button).setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_PPMFragment)
-        }
-        view.findViewById<Button>(R.id.back_button_recipe).setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_recipeFragment)
-        }
-        view.findViewById<Button>(R.id.graph_button).setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_graphFragment)
-        }
-
 
     }
-
 
     companion object {
         /**
@@ -75,12 +56,12 @@ class MenuFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MenuFragment.
+         * @return A new instance of fragment GraphFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MenuFragment().apply {
+            GraphFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

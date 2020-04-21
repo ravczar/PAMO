@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_menuFragment_to_PPMFragment"
             app:destination="@id/PPMFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
     </fragment>
     <fragment
         android:id="@+id/PPMFragment"
@@ -68,6 +71,15 @@
         tools:layout="@layout/fragment_recipe" >
         <action
             android:id="@+id/action_recipeFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.pjatk.lab4.GraphFragment"
+        android:label="fragment_graph"
+        tools:layout="@layout/fragment_graph" >
+        <action
+            android:id="@+id/action_graphFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

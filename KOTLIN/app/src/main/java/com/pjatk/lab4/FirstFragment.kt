@@ -29,7 +29,7 @@ class FirstFragment : Fragment() {
 
         view.findViewById<Button>(R.id.calculate_bmi_button).setOnClickListener {
             //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            val showCountTextView = view.findViewById<TextView>(R.id.textView_title_recipe)
+            val showCountTextView = view.findViewById<TextView>(R.id.textView_title_graph)
             val currentCount = showCountTextView.text.toString().toInt()
             val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentCount)
             Log.i("TAG!", "Wartosc argumentu $currentCount")
@@ -46,7 +46,7 @@ class FirstFragment : Fragment() {
 
     private fun countMe(view: View){
         // Get the text view
-        val showCountTextView = view.findViewById<TextView>(R.id.textView_title_recipe)
+        val showCountTextView = view.findViewById<TextView>(R.id.textView_title_graph)
         val countString = showCountTextView.text.toString()
         var count = countString.toInt()
         count++

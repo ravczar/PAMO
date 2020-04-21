@@ -6,4 +6,5 @@
     <color name="colorGreen">#32a852</color>
     <color name="colorBackground">#2196F3</color>
     <color name="buttonBackground">#BBDEFB</color>
+    <color name="calculationResult">#E31B1B</color>
 </resources>
