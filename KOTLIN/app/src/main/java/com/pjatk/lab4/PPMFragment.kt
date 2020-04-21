@@ -71,6 +71,7 @@ class PPMFragment : Fragment() {
         weight = 0.0
         height = 0.0
         age = 0.0
+        textView_man_ppm.setBackgroundColor(Color.GREEN)
 
         recipeBtn = recipe_button_ppm
         maleTextView = textView_man_ppm
@@ -89,7 +90,7 @@ class PPMFragment : Fragment() {
                 // Enabled
                 gender = true;
                 textView_man_ppm.setBackgroundColor(Color.TRANSPARENT)
-                textView_woman_ppm.setBackgroundColor(Color.YELLOW)
+                textView_woman_ppm.setBackgroundColor(Color.GREEN)
             } else {
                 // Disabled
                 gender = false;

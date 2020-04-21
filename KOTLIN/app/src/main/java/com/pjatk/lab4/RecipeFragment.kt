@@ -1,13 +1,14 @@
 package com.pjatk.lab4
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_recipe.*
@@ -75,11 +76,14 @@ class RecipeFragment : Fragment() {
 
     private fun displayRecipeConditional(){
         if(ppm != null && ppm != 0.0) {
+
+            patchProperRecipeForUserPPMIntoView()
+
             if( !isRecipeDisplayed ){
+                isRecipeDisplayed = false
                 imageView?.visibility = View.VISIBLE
                 recipeDesc?.visibility = View.VISIBLE
                 recipeIngr?.visibility = View.VISIBLE
-                isRecipeDisplayed = false
                 showRecipeBtn?.text = "Hide Recipe"
 
             }
@@ -91,6 +95,46 @@ class RecipeFragment : Fragment() {
                 recipeIngr?.visibility = View.INVISIBLE
             }
         }
+
+    }
+
+    private fun patchProperRecipeForUserPPMIntoView(){
+        var picture: Drawable? = null
+        var description: String? = null
+        var ingredients: String? = null
+        if(ppm!! < 1000){
+            picture = resources.getDrawable(R.drawable.sausage)
+            description = "Your ppm is low. You should put on some extra weight.It is time to eat s" +
+                    "omething tasty. Prepare few sausages and fire " +
+                    "up your grill. Get spicy paprika, onion and ny vegetables you might want " +
+                    "to grill with your sausages. Beer perhaps."
+            ingredients = "3x sausage, 3x bread piece, 1x white beer, 1x onion, 1x paprika, spices"
+        }
+        else if(ppm!! >= 1000 && ppm!! <= 2000){
+            picture = resources.getDrawable(R.drawable.pasta)
+            description = "Your ppm is just fine. Lets get down to work with some tasty dinner. " +
+                    "We will prepare pasta. Approximated time of creation 1[h]"
+            ingredients = "Pasta 0,3 [kg], 4x tomato, 2x onion, 0.5 garlic, some meat, spices"
+        }
+        else if(ppm!! > 2000){
+            picture = resources.getDrawable(R.drawable.watermelon)
+            description = "Your ppm is too high, you could lose some weight and I'm sure you will " +
+                    "feel much better. There is nothing special in preparations to this dinner. " +
+                    "All you have to do is go to groceries and but watermelon, " +
+                    "come back, cut in half and eat one piece. That is it."
+            ingredients = "1 x watermelon, 1x plate, 1x knife"
+        }
+        else {
+            picture = resources.getDrawable(R.drawable.ic_sentiment_very_satisfied_black_24dp)
+            description = "That is strange, it seems that we don't have a suitable recipe for your PPM!"
+            ingredients = "To get proper ingredients please contact your doctor."
+        }
+
+        // Draw image
+        val newPicture: Drawable = resources.getDrawable(R.drawable.pasta)
+        imageView?.setImageDrawable(newPicture)
+        recipeDesc?.text = description
+        recipeIngr?.text = ingredients
 
     }
     private fun catchIncomingActionParamsFromPPM(){
