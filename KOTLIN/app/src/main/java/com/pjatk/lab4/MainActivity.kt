@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
 
         return when (item.itemId) {
+
             R.id.menu_main -> {
                 Log.i("tag", "menu clicked")
                 return true

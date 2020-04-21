@@ -58,14 +58,13 @@ tools:context=".BMIFragment">
         android:id="@+id/textview_result_bmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/result_textview_bmi"
         android:textColor="@color/calculationResult"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculate_bmi_button" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_result_score_bmi" />
 
     <Button
         android:id="@+id/back_button_bmi"
@@ -102,6 +101,18 @@ tools:context=".BMIFragment">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_height_bmi" />
+
+    <TextView
+        android:id="@+id/textview_result_score_bmi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:textColor="@color/calculationResult"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculate_bmi_button"
+        tools:textSize="30sp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
