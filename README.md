@@ -33,36 +33,36 @@
 
 # PPM project overwiev
 ## APP PLAN:
-![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images/PAMO_PLAN.png)
+![Pamo plan](./images/PAMO_PLAN.png)
 ## APP MAIN:
-![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/master/images/main.PNG)
+![Pamo app_main](./images/main.PNG)
 ## APP BMI:
-![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images/bmi.PNG)
+![Pamo app_bmi](./images/bmi.PNG)
 ## APP PPM:
-![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/ppm.PNG)
+![Pamo app_ppm](./images/ppm.PNG)
 ## APP RECIPE:
-![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images/recipe.PNG)
+![Pamo app_ppm](./images/recipe.PNG)
 ## APP QUIZ:
-![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz.PNG)
+![Pamo app_quiz](./images/quiz.PNG)
 ## APP QUIZ SUMMARY:
-![Pamo app_q_summary](https://raw.githubusercontent.com/ravczar/PAMO/master/images/quiz_summary.PNG)
+![Pamo app_q_summary](./images/quiz_summary.PNG)
 ## APP MAIN UPDATED:
-![Pamo app_main_updated](https://raw.githubusercontent.com/ravczar/PAMO/master/imagesn/main_updated.PNG)
+![Pamo app_main_updated](./images/main_updated.PNG)
 ## APP CHART:
-![Pamo app_chart](https://raw.githubusercontent.com/ravczar/PAMO/master/images/chart_corona.PNG)
+![Pamo app_chart](./images/chart_corona.PNG)
 
 # KOTLIN project overwiev
 ## APP PLAN:
-![Pamo plan](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/0app_plan.PNG)
+![Pamo plan](./images_kotlin/0app_plan.PNG)
 ## APP MAIN:
-![Pamo app_main](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/1menu.PNG)
+![Pamo app_main](./images_kotlin/1menu.PNG)
 ## APP BMI:
-![Pamo app_bmi](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/2bmi.PNG)
+![Pamo app_bmi](./images_kotlin/2bmi.PNG)
 ## APP PPM:
-![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/3ppm.PNG)
+![Pamo app_ppm](./images_kotlin/3ppm.PNG)
 ## APP RECIPE:
-![Pamo app_ppm](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/4.recipes.PNG)
+![Pamo app_ppm](./images_kotlin/4.recipes.PNG)
 ## APP GRAPH:
-![Pamo app_quiz](https://raw.githubusercontent.com/ravczar/PAMO/master/images_kotlin/5covid_graph.PNG)
+![Pamo app_quiz](./images_kotlin/5covid_graph.PNG)
 
 
